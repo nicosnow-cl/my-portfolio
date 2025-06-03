@@ -6,13 +6,16 @@ import {
   prerender as ssr,
 } from "preact-iso";
 
-import { Home } from "./pages/Home/index.jsx";
-import { NotFound } from "./pages/_404.jsx";
 import "./style.css";
+import { Home } from "./pages/Home/index.jsx";
+import { Navbar } from "./components/common/Navbar";
+import { NotFound } from "./pages/_404.jsx";
 
 export function App() {
   return (
     <LocationProvider>
+      <Navbar />
+
       <main>
         <Router>
           <Route path="/" component={Home} />
