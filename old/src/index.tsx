@@ -7,16 +7,16 @@ import {
 } from "preact-iso";
 
 import "./style.css";
-import { Home } from "./pages/Home/index.jsx";
+import { Home } from "./pages/Home";
 import { Navbar } from "./components/common/Navbar";
-import { NotFound } from "./pages/_404.jsx";
+import { NotFound } from "./pages/_404.js";
 
 export function App() {
   return (
     <LocationProvider>
       <Navbar />
 
-      <main>
+      <main className="flex-1">
         <Router>
           <Route path="/" component={Home} />
           <Route default component={NotFound} />

@@ -1,0 +1,31 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@tailwindcss/vite": "^4.1.8",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"preact": "^10.25.3",
+		"preact-iso": "^2.9.1",
+		"preact-render-to-string": "^6.5.13",
+		"tailwind-merge": "^3.3.0",
+		"tailwindcss": "^4.1.8"
+	},
+	"devDependencies": {
+		"@preact/preset-vite": "^2.9.3",
+		"@types/node": "^22.15.29",
+		"eslint": "^8.57.1",
+		"eslint-config-preact": "^1.5.0",
+		"tw-animate-css": "^1.3.3",
+		"typescript": "^5.8.3",
+		"vite": "^6.0.4"
+	},
+	"eslintConfig": {
+		"extends": "preact"
+	}
+}
