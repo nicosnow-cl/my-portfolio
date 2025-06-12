@@ -1,7 +1,13 @@
-<div class="app-container bg-red-500">
-  <h1 class="text-3xl">Welcome to My Angular App!</h1>
-  <p>This is a simple example of an Angular application.</p>
+<div class="app-container min-h-screen bg-background text-foreground">
+  <navbar></navbar>
+
+  <main class="px-12 h-full">
+    <hero></hero>
+    <about-me></about-me>
+  </main>
+
   <router-outlet></router-outlet>
+
   <footer>
     <p>&copy; 2023 My Angular App</p>
   </footer>

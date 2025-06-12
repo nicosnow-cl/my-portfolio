@@ -1,0 +1,59 @@
+<section class="h-[100dvh] p-8">
+  <div class="h-full grid grid-cols-6 gap-x-8">
+    <div class="flex flex-col gap-y-8 col-span-2">
+      <h2 class="text-4xl font-medium">About Me</h2>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
+        aliquid vel, in, unde qui aut aperiam quidem non sapiente dolorem beatae
+        quod reprehenderit! Eligendi voluptatum earum illo nobis deserunt non.
+      </p>
+
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
+        aliquid vel, in, unde qui aut aperiam quidem non sapiente dolorem beatae
+        quod reprehenderit! Eligendi voluptatum earum illo nobis deserunt non.
+      </p>
+    </div>
+
+    <div class="col-span-4" hlmCard>
+      <div class="flex flex-row justify-between gap-x-8" hlmCardHeader>
+        <h3 class="text-3xl text-balance min-w-2xs" hlmCardTitle>
+          Explore my profesional journey
+        </h3>
+        <p hlmCardDescription>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+          dignissimos pariatur exercitationem vel quidem? Voluptatem inventore
+          ullam at vitae quod quia mollitia nam culpa repellendus labore,
+          laudantium fuga laboriosam provident?
+        </p>
+      </div>
+
+      <div hlmCardContent class="grid gap-4">
+        <div class="flex flex-col">
+          @for (job of jobs; track job) {
+          <div class="grid grid-cols-3 border-b py-4 gap-x-4">
+            <div class="flex flex-col items-start">
+              <span class="text-xl font-medium"
+                >{{ job.companyName }}, {{ job.location }}</span
+              >
+              <span class="text-muted-foreground">{{ job.date }}</span>
+            </div>
+
+            <div>
+              <span class="text-md font-medium">{{ job.position }}</span>
+
+              <p class="text-muted-foreground">{{ job.description }}</p>
+            </div>
+
+            <div class="flex gap-2 items-center justify-end">
+              @for (item of job.stack; track item) {
+              <div hlmBadge>{{ item }}</div>
+              }
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

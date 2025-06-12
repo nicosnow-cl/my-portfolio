@@ -23,6 +23,8 @@
     "@angular/ssr": "^20.0.1",
     "@spartan-ng/brain": "^0.0.1-alpha.473",
     "@tailwindcss/postcss": "^4.1.8",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.8",
@@ -44,6 +46,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.5.4",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss-animate": "^1.0.6",
     "typescript": "~5.8.3"
   }
 }

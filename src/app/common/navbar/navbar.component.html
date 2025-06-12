@@ -1,0 +1,19 @@
+<div class="px-12 py-4">
+  <nav class="flex items-center gap-x-12">
+    <div class="font-extrabold">LOGO</div>
+
+    <ul class="flex items-center gap-x-6">
+      @for (item of navbarItems; track item) {
+      <li>
+        <button variant="link" hlmBtn>
+          <a>{{ item.name }}</a>
+        </button>
+      </li>
+      }
+    </ul>
+
+    <button class="ml-auto underline decoration-dotted" variant="link" hlmBtn>
+      Social medias
+    </button>
+  </nav>
+</div>
