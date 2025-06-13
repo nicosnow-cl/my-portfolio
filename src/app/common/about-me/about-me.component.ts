@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
   HlmCardContentDirective,
   HlmCardDescriptionDirective,
@@ -11,6 +12,7 @@ import {
 @Component({
   selector: 'about-me',
   imports: [
+    HlmButtonDirective,
     HlmCardContentDirective,
     HlmCardDescriptionDirective,
     HlmCardDirective,
@@ -26,7 +28,7 @@ export class AboutMeComponent {
     {
       date: 'August 2022 - Present',
       companyName: 'Cencosud SA',
-      location: 'Santiago, Chile',
+      location: 'Santiago, CL',
       position: 'Senior Software Engineer',
       description: 'Lorem ipsum bien chiquito',
       stack: ['JS', 'TS', 'AI'],
@@ -34,7 +36,7 @@ export class AboutMeComponent {
     {
       date: 'January 2021 - July 2022',
       companyName: 'Cencosud SA',
-      location: 'Santiago, Chile',
+      location: 'Santiago, CL',
       position: 'Software Engineer',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       stack: ['JS', 'TS', 'AI'],
@@ -42,7 +44,7 @@ export class AboutMeComponent {
     {
       date: 'January 2019 - December 2020',
       companyName: 'Cencosud SA',
-      location: 'Santiago, Chile',
+      location: 'Santiago, CL',
       position: 'Junior Software Engineer',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       stack: ['JS', 'TS', 'AI'],

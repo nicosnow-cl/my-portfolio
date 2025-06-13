@@ -15,28 +15,47 @@
       </p>
     </div>
 
-    <div class="col-span-4" hlmCard>
+    <div class="col-span-4 h-fit" hlmCard>
       <div class="flex flex-row justify-between gap-x-8" hlmCardHeader>
-        <h3 class="text-3xl text-balance min-w-2xs" hlmCardTitle>
-          Explore my profesional journey
-        </h3>
-        <p hlmCardDescription>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
-          dignissimos pariatur exercitationem vel quidem? Voluptatem inventore
-          ullam at vitae quod quia mollitia nam culpa repellendus labore,
-          laudantium fuga laboriosam provident?
-        </p>
+        <div class="flex flex-col gap-y-2">
+          <span class="font-medium">&#x2022; <i>Experience</i></span>
+
+          <h3 class="text-4xl text-balance min-w-96" hlmCardTitle>
+            Explore my profesional journey
+          </h3>
+        </div>
+
+        <div class="flex flex-col items-start gap-y-2">
+          <p hlmCardDescription>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            dignissimos pariatur exercitationem vel quidem? Voluptatem inventore
+            ullam at vitae quod quia mollitia nam culpa repellendus labore,
+            laudantium fuga laboriosam provident?
+          </p>
+
+          <button
+            class="mt-auto px-0 underline decoration-dotted"
+            variant="link"
+            hlmBtn
+          >
+            Social medias
+          </button>
+        </div>
       </div>
 
-      <div hlmCardContent class="grid gap-4">
+      <div hlmCardContent class="mt-4 grid gap-4">
         <div class="flex flex-col">
           @for (job of jobs; track job) {
-          <div class="grid grid-cols-3 border-b py-4 gap-x-4">
+          <div
+            class="grid grid-cols-3 py-4 gap-x-4 {{
+              $last ? 'border-none' : 'border-b'
+            }}"
+          >
             <div class="flex flex-col items-start">
               <span class="text-xl font-medium"
                 >{{ job.companyName }}, {{ job.location }}</span
               >
-              <span class="text-muted-foreground">{{ job.date }}</span>
+              <span class="text-muted-foreground">&#x2022; {{ job.date }}</span>
             </div>
 
             <div>
