@@ -27,6 +27,9 @@
       ],
       "@spartan-ng/helm/table": [
         ".\\libs/ui/ui-table-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/icon": [
+        ".\\libs/ui/ui-icon-helm/src/index.ts"
       ]
     }
   },

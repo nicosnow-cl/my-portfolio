@@ -1,31 +1,39 @@
 import { Component } from '@angular/core';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
 import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { lucideArrowUpRight } from '@ng-icons/lucide';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 
 const GRID_ITEMS_NUMBER = 6;
 const PROJECTS = [
   {
     title: 'AI Mentor Hub',
     description: 'Description of project one.',
-    imageUrl: `https://picsum.photos/seed/${Math.random()}/300/300`,
-    link: 'https://example.com/project-one',
+    imageUrl: `https://picsum.photos/seed/AI Mentor Hub/300/300`,
+    linkTitle: 'amh.app',
+    link: 'https://amh.app',
   },
   {
     title: 'Bit-land',
     description: 'Description of project two.',
-    imageUrl: `https://picsum.photos/seed/${Math.random()}/300/300`,
-    link: 'https://example.com/project-two',
+    imageUrl: `https://picsum.photos/seed/Bit-land/300/300`,
+    linkTitle: 'bit-land.app',
+    link: 'https://bit-land.app',
   },
   {
     title: 'BuscaRut',
     description: 'Description of project three.',
-    imageUrl: `https://picsum.photos/seed/${Math.random()}/300/300`,
-    link: 'https://example.com/project-three',
+    imageUrl: `https://picsum.photos/seed/BuscaRut/300/300`,
+    linkTitle: 'buscarut.cl',
+    link: 'https://buscarut.cl',
   },
 ];
 
 @Component({
   selector: 'portfolio',
-  imports: [HlmButtonDirective],
+  imports: [HlmButtonDirective, HlmIconDirective, NgIcon, HlmBadgeDirective],
+  providers: [provideIcons({ lucideArrowUpRight })],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.css',
 })
@@ -39,6 +47,7 @@ export class PortfolioComponent {
         title: `Placeholder Project ${i + 1}`,
         description: '',
         imageUrl: '',
+        linkTitle: '',
         link: '#',
       };
     }
@@ -48,6 +57,7 @@ export class PortfolioComponent {
       title: project.title,
       description: project.description,
       imageUrl: project.imageUrl,
+      linkTitle: project.linkTitle,
       link: project.link,
     };
   });

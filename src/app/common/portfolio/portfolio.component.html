@@ -1,31 +1,46 @@
 <section class="h-[100dvh] p-8">
-  <div class="grid grid-cols-3 gap-8">
-    @for (item of gridItems; track item ) {
-    <div
-      class="bg-foreground aspect-square relative shadow-md text-white group"
-      (mouseover)="setItemActive(item.id)"
-    >
-      @if (item.imageUrl) {
-      <img
-        src="{{ item.imageUrl }}"
-        class="absolute h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-      />
-
-      <div class="absolute left-4 top-4">
-        <h3 class="text-lg font-medium">
-          {{ item.title }}
-        </h3>
-
-        <span>Website</span>
-      </div>
-
-      <div
-        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100"
+  <div class="flex flex-col gap-y-8">
+    <div class="flex flex-col items-center gap-y-4">
+      <h3 class="text-4xl font-medium">Portfolio</h3>
+      <span variant="secondary" size="lg" hlmBadge
+        >&#x2022; Latest projects</span
       >
-        <button hlmBtn>Ir</button>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4">
+      @for (item of gridItems; track item ) {
+      <div
+        class="bg-foreground aspect-square relative shadow-md text-white group"
+        (mouseover)="setItemActive(item.id)"
+      >
+        @if (item.imageUrl) {
+        <img
+          src="{{ item.imageUrl }}"
+          class="absolute h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+        />
+
+        <div class="absolute left-8 top-8">
+          <h3 class="text-lg font-medium">
+            {{ item.title }}
+          </h3>
+
+          <span>Website</span>
+        </div>
+
+        <div
+          class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+          <button size="icon" hlmBtn>
+            <ng-icon hlm size="lg" name="lucideArrowUpRight" />
+          </button>
+
+          <span class="absolute right-8 bottom-8 text-lg font-light">{{
+            item.linkTitle
+          }}</span>
+        </div>
+        }
       </div>
       }
     </div>
-    }
   </div>
 </section>
