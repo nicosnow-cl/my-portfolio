@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
 import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import { HlmIconDirective } from '@spartan-ng/helm/icon';
-import { lucideArrowUpRight } from '@ng-icons/lucide';
+import { lucideArrowRight, lucideArrowUpRight } from '@ng-icons/lucide';
 import { NgIcon, provideIcons } from '@ng-icons/core';
+
+import { WrapperComponent } from '../../layout/wrapper/wrapper.component';
 
 const GRID_ITEMS_NUMBER = 6;
 const PROJECTS = [
@@ -32,8 +34,14 @@ const PROJECTS = [
 
 @Component({
   selector: 'portfolio',
-  imports: [HlmButtonDirective, HlmIconDirective, NgIcon, HlmBadgeDirective],
-  providers: [provideIcons({ lucideArrowUpRight })],
+  imports: [
+    HlmButtonDirective,
+    HlmIconDirective,
+    NgIcon,
+    HlmBadgeDirective,
+    WrapperComponent,
+  ],
+  providers: [provideIcons({ lucideArrowUpRight, lucideArrowRight })],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.css',
 })
@@ -61,8 +69,4 @@ export class PortfolioComponent {
       link: project.link,
     };
   });
-
-  setItemActive(index: number) {
-    console.log(`Item ${index + 1} clicked`);
-  }
 }

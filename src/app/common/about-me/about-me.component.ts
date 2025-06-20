@@ -9,6 +9,8 @@ import {
   HlmCardTitleDirective,
 } from '@spartan-ng/helm/card';
 
+import { WrapperComponent } from '../../layout/wrapper/wrapper.component';
+
 @Component({
   selector: 'about-me',
   imports: [
@@ -19,6 +21,7 @@ import {
     HlmCardHeaderDirective,
     HlmCardTitleDirective,
     HlmBadgeDirective,
+    WrapperComponent,
   ],
   templateUrl: './about-me.component.html',
   styleUrl: './about-me.component.css',
