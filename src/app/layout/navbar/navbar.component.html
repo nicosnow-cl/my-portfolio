@@ -5,7 +5,12 @@
     <ul class="flex items-center gap-x-6">
       @for (item of navbarItems; track item) {
       <li>
-        <button variant="link" hlmBtn>
+        <button
+          variant="link"
+          routerLink="{{ item.link }}"
+          routerLinkActive
+          hlmBtn
+        >
           <a>{{ item.name }}</a>
         </button>
       </li>

@@ -12,7 +12,7 @@ import {
 import { WrapperComponent } from '../../layout/wrapper/wrapper.component';
 
 @Component({
-  selector: 'about-me',
+  selector: 'app-about-me',
   imports: [
     HlmButtonDirective,
     HlmCardContentDirective,

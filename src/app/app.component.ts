@@ -1,20 +1,10 @@
 import { Component } from '@angular/core';
 
-import { AboutMeComponent } from './common/about-me/about-me.component';
-import { HeroComponent } from './common/hero/hero.component';
-import { NavbarComponent } from './common/navbar/navbar.component';
-import { PortfolioComponent } from './common/portfolio/portfolio.component';
-import { FooterComponent } from './common/footer/footer.component';
+import { MainComponent } from './layout/main/main.component';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    NavbarComponent,
-    HeroComponent,
-    AboutMeComponent,
-    PortfolioComponent,
-    FooterComponent,
-  ],
+  imports: [MainComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -1,0 +1,14 @@
+<div
+  class="ml-auto grid w-fit bg-foreground"
+  [style.grid-template-columns]="'repeat(' + columns + ', 1fr)'"
+>
+  @for (mosaic of mosaics; track mosaic.id) {
+  <div
+    id="{{ mosaic.id }}"
+    class="mosaic-elem group size-7 bg-background"
+    attr.data-index="{{ mosaic.id }}"
+    (mouseenter)="handleMouseOver($event, mosaic.id)"
+    (mouseleave)="handleMouseLeave($event, mosaic.id)"
+  ></div>
+  }
+</div>

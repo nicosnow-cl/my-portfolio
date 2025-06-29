@@ -76,3 +76,29 @@
     font-family: var(--font-sans);
   }
 }
+
+.masked-container {
+  position: relative;
+
+  /* Crear máscara circular alrededor del cursor */
+  mask-image: radial-gradient(
+    circle 200px at var(--x) var(--y),
+    black 0%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle 200px at var(--x) var(--y),
+    black 0%,
+    transparent 100%
+  );
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  /* Opcional para controlar cómo se mezcla */
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+
+  /* Fondo visible solo en el área revelada */
+  transition: mask-image 0.1s, -webkit-mask-image 0.1s;
+}
