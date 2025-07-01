@@ -1,14 +1,14 @@
 <div
-  class="ml-auto grid w-fit bg-foreground"
+  #mosaicGrid
+  class="ml-auto grid w-fit bg-foreground gap-[1px]"
   [style.grid-template-columns]="'repeat(' + columns + ', 1fr)'"
 >
-  @for (mosaic of mosaics; track mosaic.id) {
-  <div
-    id="{{ mosaic.id }}"
-    class="mosaic-elem group size-7 bg-background"
-    attr.data-index="{{ mosaic.id }}"
-    (mouseenter)="handleMouseOver($event, mosaic.id)"
-    (mouseleave)="handleMouseLeave($event, mosaic.id)"
-  ></div>
+  @for (mosaic of mosaics; track mosaic.id; let idx = $index ) {
+  <div id="{{ mosaic.id }}" class="size-8" (mousemove)="onMouseMove($event)">
+    <div
+      class="size-full mosaic-elem bg-background"
+      attr.data-index="{{ idx }}"
+    ></div>
+  </div>
   }
 </div>
