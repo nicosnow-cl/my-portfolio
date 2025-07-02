@@ -1,15 +1,16 @@
+import { animate, AnimatableObject } from 'animejs';
 import {
-  animate,
-  stagger,
-  AnimatableObject,
-  TargetsParam,
-  utils,
-} from 'animejs';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+  AfterViewInit,
+  Component,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { throttle } from 'lodash';
 
-const ROWS = 20;
-const COLUMNS = 20;
+const ROWS = 30;
+const COLUMNS = 30;
 
 @Component({
   selector: 'app-mosaic',
@@ -17,19 +18,27 @@ const COLUMNS = 20;
   templateUrl: './mosaic.component.html',
   styleUrl: './mosaic.component.css',
 })
-export class MosaicComponent {
+export class MosaicComponent implements AfterViewInit {
   mosaics: { id: string }[] = [];
   columns = COLUMNS;
   rows = ROWS;
   baseScale = 0.3;
   animatables: AnimatableObject | null = null;
   hoverIndex = 0;
+  private mosaicNodes: HTMLElement[] = [];
+  private pendingFrame = false;
   private animationFrameId: number | null = null;
   private lastIndex = -1;
+  private pendingMouseX = 0;
+  private pendingMouseY = 0;
 
-  throttledMouseOver: (event: MouseEvent, idx: number) => void;
+  throttledMouseOver: (event: MouseEvent) => void;
+
   @ViewChild('mosaicGrid', { static: true })
   mosaicGrid!: ElementRef<HTMLDivElement>;
+  @ViewChildren('mosaicElem', { read: ElementRef }) mosaicElems!: QueryList<
+    ElementRef<HTMLElement>
+  >;
 
   constructor() {
     for (let i = 0; i < ROWS; i++) {
@@ -39,206 +48,93 @@ export class MosaicComponent {
     }
 
     this.throttledMouseOver = throttle(
-      (event: MouseEvent, idx: number) => this.onMosaicMouseOver(event, idx),
-      0,
+      (event: MouseEvent) => this.onMouseMove(event),
+      150,
       { leading: true, trailing: false }
     );
   }
 
-  getCircularSiblings(id: string, dimension = 3) {
-    const circularSiblings: {
-      ids: string[];
-      scale: number;
-    }[] = []; // Array to hold the circular siblings grouped by dimension
-    const [row, col] = id.split('-').map(Number);
-
-    for (let d = 1; d <= dimension; d++) {
-      const currentSiblings: { ids: string[]; scale: number } = {
-        ids: [],
-        scale: 0.3 + (d - 1) * 0.1, // Scale based on the distance,
-      };
-
-      for (let i = -d; i <= d; i++) {
-        for (let j = -d; j <= d; j++) {
-          if (Math.abs(i) + Math.abs(j) === d) {
-            const newRow = row + i;
-            const newCol = col + j;
-
-            if (
-              newRow >= 0 &&
-              newRow < ROWS &&
-              newCol >= 0 &&
-              newCol < COLUMNS
-            ) {
-              currentSiblings.ids.push(`${newRow}-${newCol}`);
-            }
-          }
-        }
-      }
-      circularSiblings.push(currentSiblings);
-    }
-
-    circularSiblings.reverse();
-
-    return circularSiblings;
-  }
-
-  getCircularSiblingsByIndex(index: number, dimension = 3): number[] {
-    const circularSiblings: number[] = []; // Array to hold the circular siblings grouped by dimension
-    const row = Math.floor(index / this.columns);
-    const col = index % this.columns;
-
-    for (let d = 1; d <= dimension; d++) {
-      for (let i = -d; i <= d; i++) {
-        for (let j = -d; j <= d; j++) {
-          if (Math.abs(i) + Math.abs(j) === d) {
-            const newRow = row + i;
-            const newCol = col + j;
-
-            if (
-              newRow >= 0 &&
-              newRow < ROWS &&
-              newCol >= 0 &&
-              newCol < this.columns
-            ) {
-              const newIndex = newRow * this.columns + newCol;
-              if (!circularSiblings.includes(newIndex)) {
-                circularSiblings.push(newIndex);
-              }
-            }
-          }
-        }
-      }
-    }
-
-    circularSiblings.reverse();
-    return circularSiblings;
-  }
-
-  animageWaveEffect(index: number) {
-    animate('.mosaic-elem', {
-      scale: 1,
-      duration: 50,
-      easing: 'easeInOutQuad',
-      onComplete: () => {
-        animate('.mosaic-elem', {
-          scale: 0.5,
-          translateY: -15,
-          opacity: 0.5,
-          delay: stagger(50, {
-            grid: [this.columns, ROWS],
-            from: index,
-            start: 1,
-          }),
-        });
-      },
-    });
-  }
-
-  onMosaicMouseOver(event: MouseEvent, index: number) {
-    const circularSiblings = this.getCircularSiblingsByIndex(index, 4);
-
-    // Todos los mosaicos posibles
-    const allMosaicSelector = '.mosaic-elem[data-index]';
-
-    // Construyes el selector de los que SÍ quieres animar
-    const animateSelector = [index, ...circularSiblings]
-      .map((idx) => `[data-index="${idx}"]`)
-      .join(', ');
-
-    // Ahora generas el selector para los que NO quieres animar
-    const notAnimateSelector = circularSiblings.length
-      ? `.mosaic-elem:not(${circularSiblings
-          .map((idx) => `[data-index="${idx}"]`)
-          .join('):not(')})`
-      : allMosaicSelector; // Si está vacío, no excluyas nada
-
-    animate(notAnimateSelector, {
-      scale: 1,
-      translateY: 0,
-      // opacity: 1,
-      duration: 150,
-      easing: 'easeInOutQuad',
-      onComplete: () => {
-        animate(animateSelector, {
-          scale: 0.5,
-          translateY: 50,
-          // opacity: 0.1,
-          delay: stagger(50, {
-            grid: [this.columns, ROWS],
-            from: index,
-            start: 1,
-          }),
-        });
-      },
-    });
+  ngAfterViewInit(): void {
+    this.mosaicNodes = this.mosaicElems.toArray().map((el) => el.nativeElement);
   }
 
   onMouseMove(event: MouseEvent) {
-    if (this.animationFrameId) return;
+    this.pendingMouseX = event.clientX;
+    this.pendingMouseY = event.clientY;
+
+    if (this.pendingFrame) return;
+
+    this.pendingFrame = true;
 
     this.animationFrameId = requestAnimationFrame(() => {
-      this.handleWaveEffect(event);
-      this.animationFrameId = null;
+      this.handleWaveEffect(this.pendingMouseX, this.pendingMouseY);
+      this.pendingFrame = false;
     });
   }
 
-  handleWaveEffect(event: MouseEvent) {
-    const gridRect = this.mosaicGrid.nativeElement.getBoundingClientRect();
-    const x = event.clientX - gridRect.left;
-    const y = event.clientY - gridRect.top;
+  handleWaveEffect(clientX: number, clientY: number) {
+    const gridEl = this.mosaicGrid.nativeElement;
+    const gridRect = gridEl.getBoundingClientRect();
+
+    const mouseX = clientX - gridRect.left;
+    const mouseY = clientY - gridRect.top;
 
     const cellWidth = gridRect.width / this.columns;
     const cellHeight = gridRect.height / this.rows;
 
-    const col = Math.floor(x / cellWidth);
-    const row = Math.floor(y / cellHeight);
+    const col = Math.floor(mouseX / cellWidth);
+    const row = Math.floor(mouseY / cellHeight);
     const index = row * this.columns + col;
 
     if (index === this.lastIndex || index < 0 || index >= this.mosaics.length)
       return;
-
     this.lastIndex = index;
 
-    const all = Array.from(
-      this.mosaicGrid.nativeElement.querySelectorAll<HTMLElement>(
-        '.mosaic-elem'
-      )
-    );
+    const centerX = gridRect.width / 2;
+    const centerY = gridRect.height / 2;
 
     const baseDelay = 30;
-    const maxDistance = 7;
+    const maxDistance = 5;
+    const pullFactor = 0.15;
+    const baseScale = this.baseScale;
+
+    const all = this.mosaicNodes;
 
     all.forEach((el) => {
-      const idx = parseInt(el.getAttribute('data-index') || '-1', 10);
-      if (idx < 0) return;
+      const idx = Number((el.dataset as { index: string }).index);
 
-      const dx = Math.abs((idx % this.columns) - col);
-      const dy = Math.abs(Math.floor(idx / this.columns) - row);
-      const distance = dx + dy;
-      const scale = 0.2 + distance * 0.1;
-      const translationY = distance * 10;
-      const opacity = 1 - distance * 0.1;
+      if (isNaN(idx)) return;
+
+      const cellCol = idx % this.columns;
+      const cellRow = Math.floor(idx / this.columns);
+
+      const dx = cellCol - col;
+      const dy = cellRow - row;
+      const distance = Math.hypot(dx, dy);
 
       if (distance <= maxDistance) {
-        // Animar deformación con retraso
+        const distanceFactor = 1 - distance / maxDistance;
+
+        const cellCenterX = (cellCol + 0.5) * cellWidth;
+        const cellCenterY = (cellRow + 0.5) * cellHeight;
+
+        const deltaX = (centerX - cellCenterX) * pullFactor * distanceFactor;
+        const deltaY = (centerY - cellCenterY) * pullFactor * distanceFactor;
+
+        const scale = baseScale + distance * 0.1;
+
         animate(el, {
-          scale,
-          translationY,
-          opacity,
+          transform: `translate(${deltaX}px, ${deltaY}px) scale(${scale})`,
           delay: distance * baseDelay,
           duration: 300,
-          easing: 'easeOutQuad',
-          direction: 'alternate',
+          easing: 'easeOutSine',
         });
       } else {
-        // Restaurar suavemente
         animate(el, {
-          scale: 1,
-          opacity: 1,
-          translateY: 0,
-          duration: 400,
-          easing: 'easeOutCubic',
+          transform: 'translate(0, 0) scale(1)',
+          delay: 50,
+          duration: 600,
+          easing: 'easeOutSine',
         });
       }
     });
