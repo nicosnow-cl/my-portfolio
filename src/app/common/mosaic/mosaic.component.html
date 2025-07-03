@@ -1,16 +1,17 @@
 <div
   #mosaicGrid
-  class="ml-auto grid w-fit bg-foreground gap-[1px]"
-  [style.grid-template-columns]="'repeat(' + columns + ', 1fr)'"
+  class="ml-auto grid w-fit bg-zinc-600"
+  [style.grid-template-columns]="'repeat(' + this.grid.columns + ', 1fr)'"
+  [style.grid-template-rows]="'repeat(' + this.grid.rows + ', 1fr)'"
   (mousemove)="throttledMouseOver($event)"
 >
   @for (mosaic of mosaics; track mosaic.id; let idx = $index ) {
-  <div id="{{ mosaic.id }}" class="size-8 relative">
-    <div
-      #mosaicElem
-      class="size-full mosaic-elem bg-background relative"
-      attr.data-index="{{ idx }}"
-    ></div>
-  </div>
+  <div
+    #mosaicElem
+    id="{{ mosaic.id }}"
+    class="mosaic-elem relative aspect-square bg-background"
+    attr.data-index="{{ idx }}"
+    [style.width.px]="grid.elemSize"
+  ></div>
   }
 </div>
