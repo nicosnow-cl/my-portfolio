@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 import { pull, throttle } from 'lodash';
 
-const ROWS = 20;
-const COLUMNS = 20;
+const ROWS = 30;
+const COLUMNS = 30;
 
 @Component({
   selector: 'app-mosaic',
@@ -20,29 +20,23 @@ const COLUMNS = 20;
   styleUrl: './mosaic.component.css',
 })
 export class MosaicComponent implements AfterViewInit, OnDestroy {
-  mosaics: { id: string }[] = [];
   grid = {
     columns: COLUMNS, // Number of columns in the grid
     rows: ROWS, // Number of rows in the grid
     elemSize: 32, // Size of each grid element in pixels
   };
+  mosaics: { id: string }[] = [];
 
   private mosaicNodes: HTMLElement[] = [];
-  private pendingFrame = false;
   private animationFrameId: number | null = null;
-  private lastIndex = -1;
-  private pendingMouseX = 0;
-  private pendingMouseY = 0;
   private previousAnimatedNodes = new Set<number>();
   private currentlyAnimated = new Set<number>();
   private restoreIntervalId: any;
-  private isAnimating = false;
-
-  animationConfig = {
+  private animationConfig = {
     scale: 0.3, // Base scale for the nodes
-    delay: 50, // Miliseconds base delay
-    maxDistance: 7, // Maximum distance (nodes) for animation effect
-    pullFactor: 0.15, // How much the nodes are pulled towards the center
+    delay: 15, // Miliseconds base delay
+    maxDistance: 5, // Maximum distance (nodes) for animation effect
+    pullFactor: 0.3, // How much the nodes are pulled towards the center
   };
 
   throttledMouseOver: (event: MouseEvent) => void;
@@ -73,20 +67,35 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
     if (typeof window !== 'undefined') {
       this.restoreIntervalId = setInterval(() => {
         this.restoreInactiveNodes();
-      }, 150); // 100–200ms es un buen intervalo
+      }, 50); // 100–200ms es un buen intervalo
     }
   }
 
   ngOnDestroy() {
     if (this.restoreIntervalId) clearInterval(this.restoreIntervalId);
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+    }
   }
 
   restoreNode(element: HTMLElement) {
     animate(element, {
       transform: 'translate(0, 0) scale(1)',
-      duration: 300,
+      duration: 0,
       easing: 'easeOutSine',
     });
+  }
+
+  restoreInactiveNodes() {
+    for (let i = 0; i < this.mosaicNodes.length; i++) {
+      if (!this.currentlyAnimated.has(i)) {
+        const el = this.mosaicNodes[i];
+
+        if (!el) continue;
+
+        this.restoreNode(el);
+      }
+    }
   }
 
   animateNode(
@@ -99,26 +108,9 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
     animate(element, {
       transform: `translate(${deltaX}px, ${deltaY}px) scale(${scale})`,
       delay,
-      duration: 300,
+      duration: 500,
       easing: 'easeOutQuad',
     });
-  }
-
-  restoreInactiveNodes() {
-    if (this.isAnimating) return;
-
-    for (const idx of this.previousAnimatedNodes) {
-      if (!this.currentlyAnimated.has(idx)) {
-        const el = this.mosaicNodes[idx];
-
-        if (!el) continue;
-
-        this.restoreNode(el);
-      }
-    }
-
-    // Actualiza previousAnimatedNodes después de restaurar
-    this.previousAnimatedNodes = new Set(this.currentlyAnimated);
   }
 
   getRectMetadata(clientX: number, clientY: number) {
@@ -131,7 +123,8 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
     const col = Math.floor(mouseX / this.grid.elemSize);
     const row = Math.floor(mouseY / this.grid.elemSize);
 
-    const center = this.grid.elemSize / 2;
+    const centerX = (col + 0.5) * this.grid.elemSize;
+    const centerY = (row + 0.5) * this.grid.elemSize;
     const index = row * this.grid.columns + col;
 
     return {
@@ -140,8 +133,8 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
       mouseY,
       col,
       row,
-      centerX: center,
-      centerY: center,
+      centerX,
+      centerY,
       gridRect,
     };
   }
@@ -181,13 +174,13 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
     const delay = distance * this.animationConfig.delay;
     const scale = this.animationConfig.scale + distance * 0.1;
     const deltaX =
-      distanceFactor *
       (centerX - cellCenterX) *
-      this.animationConfig.pullFactor;
+      this.animationConfig.pullFactor *
+      distanceFactor;
     const deltaY =
-      distanceFactor *
       (centerY - cellCenterY) *
-      this.animationConfig.pullFactor;
+      this.animationConfig.pullFactor *
+      distanceFactor;
 
     return {
       delay,
@@ -247,66 +240,20 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
   }
 
   onMouseMove(event: MouseEvent) {
-    this.pendingMouseX = event.clientX;
-    this.pendingMouseY = event.clientY;
-
-    if (this.pendingFrame) return;
-
-    this.pendingFrame = true;
-
     this.animationFrameId = requestAnimationFrame(() => {
-      this.handleWaveEffect(this.pendingMouseX, this.pendingMouseY);
-      this.pendingFrame = false;
+      this.handleWaveEffect(event.clientX, event.clientY);
     });
   }
 
   handleWaveEffect(clientX: number, clientY: number) {
-    this.isAnimating = true;
-
     const newlyAnimated = new Set<number>();
 
-    const { index, col, row, centerX, centerY } = this.getRectMetadata(
+    const { col, row, centerX, centerY } = this.getRectMetadata(
       clientX,
       clientY
     );
 
-    // const { toAnimate, toRestore } = this.getAnimableNodes(col, row);
-
-    // for (const el of toAnimate) {
-    //   const idx = Number((el.dataset as { index: string }).index);
-
-    //   if (isNaN(idx)) continue;
-
-    //   const { isInRange, distance, cellCol, cellRow } =
-    //     this.getElementPositionInfo(idx, col, row);
-
-    //   if (isInRange) {
-    //     newlyAnimated.add(idx);
-
-    //     const { delay, deltaX, deltaY, scale } = this.getElementAnimation(
-    //       distance,
-    //       cellCol,
-    //       cellRow,
-    //       centerX,
-    //       centerY
-    //     );
-
-    //     this.animateNode(el, deltaX, deltaY, scale, delay);
-    //   }
-    // }
-
-    // for (const el of toRestore) {
-    //   this.restoreNode(el);
-    // }
-
-    if (index === this.lastIndex || index < 0 || index >= this.mosaics.length)
-      return;
-
-    this.lastIndex = index;
-
-    const all = this.mosaicNodes;
-
-    all.forEach((el) => {
+    this.mosaicNodes.forEach((el) => {
       const idx = Number((el.dataset as { index: string }).index);
 
       if (isNaN(idx)) return;
@@ -329,7 +276,6 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
       }
     });
 
-    this.isAnimating = false;
     this.currentlyAnimated = newlyAnimated;
   }
 }
