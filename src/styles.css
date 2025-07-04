@@ -102,3 +102,16 @@
   /* Fondo visible solo en el área revelada */
   transition: mask-image 0.1s, -webkit-mask-image 0.1s;
 }
+
+.mosaic-grid {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.mosaic-elem {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  transition: filter 0.2s ease, transform 0.2s ease;
+  will-change: transform, filter;
+}

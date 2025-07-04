@@ -1,6 +1,6 @@
 <div
   #mosaicGrid
-  class="ml-auto grid w-fit bg-foreground gap-[1px]"
+  class="mosaic-grid ml-auto grid w-fit bg-foreground gap-[1px]"
   [style.grid-template-columns]="'repeat(' + this.grid.columns + ', 1fr)'"
   [style.grid-template-rows]="'repeat(' + this.grid.rows + ', 1fr)'"
   (mousemove)="throttledMouseOver($event)"
@@ -9,7 +9,7 @@
   <div
     #mosaicElem
     id="{{ mosaic.id }}"
-    class="mosaic-elem relative aspect-square bg-background"
+    class="mosaic-elem bg-background"
     attr.data-index="{{ idx }}"
     [style.width.px]="grid.elemSize"
   ></div>

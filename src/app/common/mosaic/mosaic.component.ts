@@ -8,7 +8,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { pull, throttle } from 'lodash';
+import { throttle } from 'lodash';
 
 const ROWS = 30;
 const COLUMNS = 30;
@@ -26,6 +26,9 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
     elemSize: 32, // Size of each grid element in pixels
   };
   mosaics: { id: string }[] = [];
+
+  baseRotation = { x: 15, y: 25 };
+  maxTilt = 5;
 
   private mosaicNodes: HTMLElement[] = [];
   private animationFrameId: number | null = null;
@@ -81,6 +84,7 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
   restoreNode(element: HTMLElement) {
     animate(element, {
       transform: 'translate(0, 0) scale(1)',
+      filter: 'brightness(1)',
       duration: 0,
       easing: 'easeOutSine',
     });
@@ -103,13 +107,15 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
     deltaX: number,
     deltaY: number,
     scale: number,
+    brightness: number,
     delay: number
   ) {
     animate(element, {
       transform: `translate(${deltaX}px, ${deltaY}px) scale(${scale})`,
-      delay,
+      filter: `brightness(${brightness})`,
       duration: 500,
       easing: 'easeOutQuad',
+      delay,
     });
   }
 
@@ -181,12 +187,14 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
       (centerY - cellCenterY) *
       this.animationConfig.pullFactor *
       distanceFactor;
+    const brightness = 1 - distanceFactor * 0.5; // brillo entre 0.6–1
 
     return {
       delay,
       scale,
       deltaX,
       deltaY,
+      brightness,
     };
   }
 
@@ -241,6 +249,7 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
 
   onMouseMove(event: MouseEvent) {
     this.animationFrameId = requestAnimationFrame(() => {
+      // this.tiltGridWithMouse(event.clientX, event.clientY);
       this.handleWaveEffect(event.clientX, event.clientY);
     });
   }
@@ -264,18 +273,38 @@ export class MosaicComponent implements AfterViewInit, OnDestroy {
       if (isInRange) {
         newlyAnimated.add(idx);
 
-        const { delay, deltaX, deltaY, scale } = this.getElementAnimation(
-          distance,
-          cellCol,
-          cellRow,
-          centerX,
-          centerY
-        );
+        const { delay, deltaX, deltaY, scale, brightness } =
+          this.getElementAnimation(
+            distance,
+            cellCol,
+            cellRow,
+            centerX,
+            centerY
+          );
 
-        this.animateNode(el, deltaX, deltaY, scale, delay);
+        this.animateNode(el, deltaX, deltaY, scale, brightness, delay);
       }
     });
 
     this.currentlyAnimated = newlyAnimated;
+  }
+
+  tiltGridWithMouse(clientX: number, clientY: number) {
+    const gridEl = this.mosaicGrid.nativeElement;
+    const rect = gridEl.getBoundingClientRect();
+
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const deltaX = clientX - centerX;
+    const deltaY = clientY - centerY;
+
+    const percentX = deltaX / (rect.width / 2);
+    const percentY = deltaY / (rect.height / 2);
+
+    const rotateX = this.baseRotation.x - percentY * this.maxTilt;
+    const rotateY = this.baseRotation.y + percentX * this.maxTilt;
+
+    gridEl.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   }
 }
