@@ -83,12 +83,12 @@
   /* Crear máscara circular alrededor del cursor */
   mask-image: radial-gradient(
     circle 200px at var(--x) var(--y),
-    black 0%,
+    black 35%,
     transparent 100%
   );
   -webkit-mask-image: radial-gradient(
     circle 200px at var(--x) var(--y),
-    black 0%,
+    black 35%,
     transparent 100%
   );
 
@@ -114,4 +114,22 @@
   aspect-ratio: 1 / 1;
   transition: filter 0.2s ease, transform 0.2s ease;
   will-change: transform, filter;
+}
+
+.ascii-container {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  pre {
+    font-family: monospace;
+    line-height: 1;
+    margin: 0;
+    white-space: pre;
+    text-align: center;
+    font-size: min(1vw, 12px); /* Escalable con límite máximo */
+  }
 }

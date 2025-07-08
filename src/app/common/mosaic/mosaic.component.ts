@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 import { throttle } from 'lodash';
 
-const ROWS = 30;
-const COLUMNS = 30;
+const ROWS = 15;
+const COLUMNS = 50;
 
 @Component({
   selector: 'app-mosaic',

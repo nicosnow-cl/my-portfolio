@@ -1,6 +1,6 @@
 <div
   #mosaicGrid
-  class="mosaic-grid ml-auto grid w-fit bg-foreground gap-[1px]"
+  class="grid w-fit bg-foreground gap-[1px]"
   [style.grid-template-columns]="'repeat(' + this.grid.columns + ', 1fr)'"
   [style.grid-template-rows]="'repeat(' + this.grid.rows + ', 1fr)'"
   (mousemove)="throttledMouseOver($event)"

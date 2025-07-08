@@ -10,6 +10,7 @@ import {
 } from '@spartan-ng/helm/card';
 
 import { WrapperComponent } from '../../layout/wrapper/wrapper.component';
+import { AcsiiPortraitComponent } from '../../common/acsii-portrait/acsii-portrait.component';
 
 @Component({
   selector: 'app-about-me',
@@ -22,6 +23,7 @@ import { WrapperComponent } from '../../layout/wrapper/wrapper.component';
     HlmCardTitleDirective,
     HlmBadgeDirective,
     WrapperComponent,
+    AcsiiPortraitComponent,
   ],
   templateUrl: './about-me.component.html',
   styleUrl: './about-me.component.css',
