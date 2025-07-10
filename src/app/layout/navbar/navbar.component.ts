@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HlmButtonDirective } from '@spartan-ng/helm/button';
 
@@ -8,7 +8,7 @@ import { HlmButtonDirective } from '@spartan-ng/helm/button';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {
+export class NavbarComponent implements AfterViewInit {
   navbarItems = [
     {
       name: 'Aboute me',
@@ -21,6 +21,32 @@ export class NavbarComponent {
     {
       name: 'Blog',
       link: '/blog',
+      disabled: true,
     },
   ];
+
+  @ViewChild('navbar') navbarElement!: ElementRef<HTMLDivElement>;
+
+  ngAfterViewInit(): void {
+    // This method is intentionally left empty.
+    // It can be used for any initialization logic after the view has been initialized.
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', () => {
+        if (!this.navbarElement) return;
+
+        if (window.scrollY > 0) {
+          this.navbarElement.nativeElement.classList.add(
+            'bg-accent/70',
+            'glass'
+          );
+        } else {
+          this.navbarElement.nativeElement.classList.remove(
+            'bg-accent/70',
+            'glass'
+          );
+        }
+      });
+    }
+  }
 }

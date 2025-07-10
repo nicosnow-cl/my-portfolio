@@ -8,14 +8,20 @@
       </div>
 
       <div class="relative z-10 pointer-events-none">
-        <h1 class="text-[16rem] leading-none z-10">Hello</h1>
+        <h1 class="text-[16rem] leading-none z-10">Hey.</h1>
         <span class="text-lg font-medium pl-6"
           >- It's <b>Nicolás Frías</b> a software developer</span
         >
       </div>
 
-      <button class="absolute bottom-8 right-0 w-fit" variant="ghost" hlmBtn>
+      <button
+        class="absolute bottom-8 right-0 w-fit flex gap-x-2"
+        variant="ghost"
+        (click)="handleScrollDown()"
+        hlmBtn
+      >
         Scroll down
+        <ng-icon class="!size-5" name="lucideArrowDown" hlm />
       </button>
     </div>
   </section>

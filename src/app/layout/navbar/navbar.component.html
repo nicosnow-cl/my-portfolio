@@ -1,4 +1,7 @@
-<div class="px-12 py-4">
+<div
+  #navbar
+  class="fixed top-0 w-full px-12 py-4 z-40 transition-colors duration-500"
+>
   <nav class="flex items-center gap-x-12">
     <div class="font-extrabold">LOGO</div>
 
@@ -8,6 +11,7 @@
         <button
           variant="link"
           routerLink="{{ item.link }}"
+          disabled="{{ item.disabled }}"
           routerLinkActive
           hlmBtn
         >

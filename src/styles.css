@@ -133,3 +133,9 @@
     font-size: min(1vw, 12px); /* Escalable con límite máximo */
   }
 }
+
+.glass {
+  border-radius: 1rem;
+  backdrop-filter: blur(0.8rem);
+  -webkit-backdrop-filter: blur(0.8rem);
+}

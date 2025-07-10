@@ -16,6 +16,8 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
+      "@libs/*": ["./libs/*"],
+      "@app/*": ["./src/app/*"],
       "@spartan-ng/helm/button": ["./libs/ui/ui-button-helm/src/index.ts"],
       "@spartan-ng/helm/card": ["./libs/ui/ui-card-helm/src/index.ts"],
       "@spartan-ng/helm/badge": ["./libs/ui/ui-badge-helm/src/index.ts"],
