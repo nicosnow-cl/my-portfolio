@@ -9,8 +9,8 @@ import {
   HlmCardTitleDirective,
 } from '@spartan-ng/helm/card';
 
-import { WrapperComponent } from '../../layout/wrapper/wrapper.component';
-import { AcsiiPortraitComponent } from '../../common/acsii-portrait/acsii-portrait.component';
+import { AcsiiPortraitComponent } from '@app/common/acsii-portrait/acsii-portrait.component';
+import { WrapperComponent } from '@app/layout/wrapper/wrapper.component';
 
 @Component({
   selector: 'app-about-me',
@@ -31,28 +31,40 @@ import { AcsiiPortraitComponent } from '../../common/acsii-portrait/acsii-portra
 export class AboutMeComponent {
   jobs = [
     {
-      date: 'August 2022 - Present',
-      companyName: 'Cencosud SA',
-      location: 'Santiago, CL',
-      position: 'Senior Software Engineer',
-      description: 'Lorem ipsum bien chiquito',
-      stack: ['JS', 'TS', 'AI'],
-    },
-    {
-      date: 'January 2021 - July 2022',
+      date: 'Aug 2022 - Present',
       companyName: 'Cencosud SA',
       location: 'Santiago, CL',
       position: 'Software Engineer',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      stack: ['JS', 'TS', 'AI'],
+      description:
+        'Ingeniero de Software enfocado en el desarrollo de soluciones escalables y eficientes. Ha integrado tecnologías innovadoras e IA generativa para potenciar funcionalidades internas. Desde 2025, forma parte del Centro de Excelencia (CoE) en IA de Cencosud.',
+      stack: ['JS', 'TS', 'React', 'Next.JS', 'Nest.JS', 'AWS', 'AI'],
     },
     {
-      date: 'January 2019 - December 2020',
-      companyName: 'Cencosud SA',
+      date: 'Mar 2022 - Aug 2022',
+      companyName: 'LicitaLab',
       location: 'Santiago, CL',
-      position: 'Junior Software Engineer',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      stack: ['JS', 'TS', 'AI'],
+      position: 'Full Stack Developer',
+      description:
+        'Desarrollador Full Stack enfocado en optimizar el rendimiento web y crear APIs eficientes para soluciones de scraping. Implementó interfaces responsivas y contribuyó a la expansión del SaaS a clientes en Perú.',
+      stack: ['JS', 'TS', 'React', 'Node', 'MongoDB', 'PostgreSQL'],
+    },
+    {
+      date: 'Aug 2021 - Mar 2020',
+      companyName: 'AgiBiz',
+      location: 'Santiago, CL',
+      position: 'Software Analyst',
+      description:
+        'Analista de Software encargado de la gestión de proyectos, documentación y cumplimiento de plazos. Actuó como enlace con stakeholders y brindó mentoría técnica a desarrolladores junior.',
+      stack: ['JS', 'TS', 'Angular', 'Node', 'MongoDB', 'SQL Server'],
+    },
+    {
+      date: 'Mar 2021 - Aug 2021',
+      companyName: 'Penta Vida SA',
+      location: 'Santiago, CL',
+      position: 'Junior Software Developer',
+      description:
+        'Desarrollador Junior enfocado en la implementación de funcionalidades a medida y soporte técnico oportuno. Mejoró la mantenibilidad del código mediante buenas prácticas y documentación clara.',
+      stack: ['JS', 'JQuery', 'Angular', 'C#', '.NET', 'SQL Server'],
     },
   ];
 }
