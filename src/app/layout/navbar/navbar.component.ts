@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { RouteTransitionService } from '@app/services/route-transition.service';
 import { HlmButtonDirective } from '@spartan-ng/helm/button';
 
 @Component({
@@ -26,6 +27,12 @@ export class NavbarComponent implements AfterViewInit {
   ];
 
   @ViewChild('navbar') navbarElement!: ElementRef<HTMLDivElement>;
+
+  constructor(private transitionService: RouteTransitionService) {}
+
+  goTo(path: string) {
+    this.transitionService.navigate(path);
+  }
 
   ngAfterViewInit(): void {
     // This method is intentionally left empty.

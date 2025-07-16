@@ -37,7 +37,7 @@ export class AboutMeComponent {
       position: 'Software Engineer',
       description:
         'Ingeniero de Software enfocado en el desarrollo de soluciones escalables y eficientes. Ha integrado tecnologías innovadoras e IA generativa para potenciar funcionalidades internas. Desde 2025, forma parte del Centro de Excelencia (CoE) en IA de Cencosud.',
-      stack: ['JS', 'TS', 'React', 'Next.JS', 'Nest.JS', 'AWS', 'AI'],
+      stack: ['React', 'Next.JS', 'Nest.JS', 'Python', 'AWS', 'AI'],
     },
     {
       date: 'Mar 2022 - Aug 2022',
@@ -46,7 +46,7 @@ export class AboutMeComponent {
       position: 'Full Stack Developer',
       description:
         'Desarrollador Full Stack enfocado en optimizar el rendimiento web y crear APIs eficientes para soluciones de scraping. Implementó interfaces responsivas y contribuyó a la expansión del SaaS a clientes en Perú.',
-      stack: ['JS', 'TS', 'React', 'Node', 'MongoDB', 'PostgreSQL'],
+      stack: ['React', 'Node', 'MongoDB', 'PostgreSQL'],
     },
     {
       date: 'Aug 2021 - Mar 2020',
@@ -55,7 +55,7 @@ export class AboutMeComponent {
       position: 'Software Analyst',
       description:
         'Analista de Software encargado de la gestión de proyectos, documentación y cumplimiento de plazos. Actuó como enlace con stakeholders y brindó mentoría técnica a desarrolladores junior.',
-      stack: ['JS', 'TS', 'Angular', 'Node', 'MongoDB', 'SQL Server'],
+      stack: ['TS', 'Angular', 'Node', 'MongoDB', 'SQL Server'],
     },
     {
       date: 'Mar 2021 - Aug 2021',
@@ -64,7 +64,7 @@ export class AboutMeComponent {
       position: 'Junior Software Developer',
       description:
         'Desarrollador Junior enfocado en la implementación de funcionalidades a medida y soporte técnico oportuno. Mejoró la mantenibilidad del código mediante buenas prácticas y documentación clara.',
-      stack: ['JS', 'JQuery', 'Angular', 'C#', '.NET', 'SQL Server'],
+      stack: ['JQuery', 'Angular', 'C#', '.NET', 'SQL Server'],
     },
   ];
 }

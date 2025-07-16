@@ -10,8 +10,8 @@
       <li>
         <button
           variant="link"
-          routerLink="{{ item.link }}"
           disabled="{{ item.disabled }}"
+          (click)="goTo(item.link)"
           routerLinkActive
           hlmBtn
         >
