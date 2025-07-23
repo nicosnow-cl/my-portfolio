@@ -8,6 +8,8 @@ import {
   HlmCardHeaderDirective,
   HlmCardTitleDirective,
 } from '@spartan-ng/helm/card';
+import { lucideLinkedin } from '@ng-icons/lucide';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import { AcsiiPortraitComponent } from '@app/common/acsii-portrait/acsii-portrait.component';
 import { WrapperComponent } from '@app/layout/wrapper/wrapper.component';
@@ -24,7 +26,9 @@ import { WrapperComponent } from '@app/layout/wrapper/wrapper.component';
     HlmBadgeDirective,
     WrapperComponent,
     AcsiiPortraitComponent,
+    NgIcon,
   ],
+  providers: [provideIcons({ lucideLinkedin })],
   templateUrl: './about-me.component.html',
   styleUrl: './about-me.component.css',
 })
@@ -67,4 +71,6 @@ export class AboutMeComponent {
       stack: ['JQuery', 'Angular', 'C#', '.NET', 'SQL Server'],
     },
   ];
+
+  linkedinURL = 'https://www.linkedin.com/in/nicofrias-snow/';
 }

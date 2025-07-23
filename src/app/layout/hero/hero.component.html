@@ -10,18 +10,21 @@
       <div class="relative flex flex-col gap-y-3 z-10 pointer-events-none">
         <h1 class="text-[9rem] md:text-[16rem] leading-none z-10">Hey.</h1>
         <span class="text-md md:text-lg font-medium pl-6">
-          - It's me, <b>Nicolás Frías</b>, a software developer</span
+          - Solo soy yo,
+          <b class="underline decoration-dotted underline-offset-4"
+            >Nicolás Frías</b
+          >, un desarrollador de software</span
         >
       </div>
 
       <button
-        class="absolute bottom-8 right-0 w-fit flex gap-x-2"
+        class="absolute bottom-8 right-0 w-fit flex gap-x-2 text-lg"
         variant="ghost"
         (click)="handleScrollDown()"
         hlmBtn
       >
-        Scroll down
-        <ng-icon class="!size-5" name="lucideArrowDown" hlm />
+        Bajar
+        <ng-icon class="!size-6" name="lucideArrowDown" hlm />
       </button>
     </div>
   </section>

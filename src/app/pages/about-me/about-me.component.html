@@ -2,22 +2,22 @@
   <section class="min-h-[100dvh] p-2 md:p-8">
     <div class="h-full grid grid-cols-6 gap-8">
       <div class="flex flex-col gap-y-8 col-span-6 md:col-span-2">
-        <h2 class="text-4xl font-medium">About me</h2>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
-          aliquid vel, in, unde qui aut aperiam quidem non sapiente dolorem
-          beatae quod reprehenderit! Eligendi voluptatum earum illo nobis
-          deserunt non.
+        <h2 class="text-4xl font-medium">Sobre mi</h2>
+        <p class="text-pretty">
+          Soy un <b>Ingeniero de Software</b> con experiencia comprobada en el
+          desarrollo de soluciones escalables y la optimización del rendimiento
+          de sistemas. Especializado en desarrollo full-stack e integración de
+          tecnologías avanzadas para mejorar la experiencia del usuario y las
+          operaciones del negocio.
         </p>
 
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
-          aliquid vel, in, unde qui aut aperiam quidem non sapiente dolorem
-          beatae quod reprehenderit! Eligendi voluptatum earum illo nobis
-          deserunt non.
+        <p class="text-pretty">
+          Dale un vistazo a mi trayectoria profesional y descubre cómo he
+          contribuido a proyectos innovadores y desafiantes. Estoy siempre
+          abierto a nuevas oportunidades y colaboraciones.
         </p>
 
-        <app-acsii-portrait></app-acsii-portrait>
+        <app-acsii-portrait />
       </div>
 
       <div class="col-span-6 md:col-span-4 h-fit" hlmCard>
@@ -26,28 +26,29 @@
           hlmCardHeader
         >
           <div class="flex flex-col gap-y-2">
-            <span class="font-medium">&#x2022; <i>Experience</i></span>
+            <span class="font-medium">&#x2022; <i>Experiencia</i></span>
 
             <h3 class="text-4xl text-balance min-w-80 md:min-w-96" hlmCardTitle>
-              Explore my profesional journey
+              Explora mi trayectoria profesional
             </h3>
           </div>
 
           <div class="flex flex-col items-start gap-y-2">
             <p hlmCardDescription>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
-              dignissimos pariatur exercitationem vel quidem? Voluptatem
-              inventore ullam at vitae quod quia mollitia nam culpa repellendus
-              labore, laudantium fuga laboriosam provident?
+              Mi enfoque se centra en la calidad del código, la colaboración
+              efectiva y la entrega de soluciones que superen las expectativas.
             </p>
 
-            <button
-              class="mt-auto px-0 underline decoration-dotted"
+            <a
+              [href]="linkedinURL"
+              target="_blank"
+              class="mt-auto px-0 underline decoration-dotted flex gap-x-2"
               variant="link"
               hlmBtn
             >
-              Social medias
-            </button>
+              <ng-icon name="lucideLinkedin" hlm />
+              Visita mi LinkedIn
+            </a>
           </div>
         </div>
 
