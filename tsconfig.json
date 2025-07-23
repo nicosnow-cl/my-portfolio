@@ -16,13 +16,30 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "@libs/*": ["./libs/*"],
-      "@app/*": ["./src/app/*"],
-      "@spartan-ng/helm/button": ["./libs/ui/ui-button-helm/src/index.ts"],
-      "@spartan-ng/helm/card": ["./libs/ui/ui-card-helm/src/index.ts"],
-      "@spartan-ng/helm/badge": ["./libs/ui/ui-badge-helm/src/index.ts"],
-      "@spartan-ng/helm/table": ["./libs/ui/ui-table-helm/src/index.ts"],
-      "@spartan-ng/helm/icon": ["./libs/ui/ui-icon-helm/src/index.ts"]
+      "@libs/*": [
+        "./libs/*"
+      ],
+      "@app/*": [
+        "./src/app/*"
+      ],
+      "@spartan-ng/helm/button": [
+        "./libs/ui/ui-button-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/card": [
+        "./libs/ui/ui-card-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/badge": [
+        "./libs/ui/ui-badge-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/table": [
+        "./libs/ui/ui-table-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/icon": [
+        "./libs/ui/ui-icon-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/menu": [
+        ".\\libs/ui/ui-menu-helm/src/index.ts"
+      ]
     }
   },
   "angularCompilerOptions": {

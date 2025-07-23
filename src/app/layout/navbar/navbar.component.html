@@ -15,14 +15,35 @@
           routerLinkActive
           hlmBtn
         >
-          <a>{{ item.name }}</a>
+          {{ item.name }}
         </button>
       </li>
       }
     </ul>
 
-    <button class="ml-auto underline decoration-dotted" variant="link" hlmBtn>
-      Social medias
+    <button
+      class="ml-auto underline decoration-dotted"
+      variant="link"
+      [brnMenuTriggerFor]="menu"
+      hlmBtn
+    >
+      Redes sociales
     </button>
   </nav>
 </div>
+
+<ng-template #menu>
+  <hlm-menu>
+    @for (item of socialMediaItems; track item) {
+    <a
+      [href]="item.link"
+      target="_blank"
+      class="flex gap-x-2 items-center cursor-pointer"
+      hlmMenuItem
+    >
+      <ng-icon name="{{ item.icon }}" hlm />
+      {{ item.name }}
+    </a>
+    }
+  </hlm-menu>
+</ng-template>
