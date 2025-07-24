@@ -17,7 +17,17 @@
           abierto a nuevas oportunidades y colaboraciones.
         </p>
 
-        <app-acsii-portrait />
+        <div hlmAccordion>
+          <div hlmAccordionItem>
+            <button hlmAccordionTrigger>
+              ¿Quién soy?
+              <ng-icon name="lucideChevronDown" hlm hlmAccIcon />
+            </button>
+            <hlm-accordion-content
+              ><app-acsii-portrait ngSkipHydration
+            /></hlm-accordion-content>
+          </div>
+        </div>
       </div>
 
       <div class="col-span-6 md:col-span-4 h-fit" hlmCard>
@@ -70,7 +80,7 @@
               </div>
 
               <div class="col-span-4">
-                <span class="text-md font-medium">{{ job.position }}</span>
+                <span class="text-xl font-medium">{{ job.position }}</span>
 
                 <p class="text-muted-foreground">{{ job.description }}</p>
               </div>
@@ -79,7 +89,9 @@
                 class="flex gap-2 items-center md:justify-end col-span-2 flex-wrap"
               >
                 @for (item of job.stack; track item) {
-                <div class="cursor-default" hlmBadge>{{ item }}</div>
+                <div class="cursor-default rounded-none" hlmBadge>
+                  {{ item }}
+                </div>
                 }
               </div>
             </div>
