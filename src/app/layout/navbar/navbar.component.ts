@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import { HlmMenuComponent, HlmMenuItemDirective } from '@spartan-ng/helm/menu';
-import { lucideGithub, lucideLinkedin } from '@ng-icons/lucide';
+import { lucideGithub, lucideLinkedin, lucideYoutube } from '@ng-icons/lucide';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import { RouteTransitionService } from '@app/services/route-transition.service';
@@ -16,7 +16,7 @@ import { RouteTransitionService } from '@app/services/route-transition.service';
     HlmMenuItemDirective,
     NgIcon,
   ],
-  providers: [provideIcons({ lucideGithub, lucideLinkedin })],
+  providers: [provideIcons({ lucideGithub, lucideLinkedin, lucideYoutube })],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
@@ -47,6 +47,11 @@ export class NavbarComponent implements AfterViewInit {
       name: 'LinkedIn',
       link: 'https://www.linkedin.com/in/nicofrias-snow/',
       icon: 'lucideLinkedin',
+    },
+    {
+      name: 'Youtube',
+      link: 'https://www.youtube.com/nicosnow-cl',
+      icon: 'lucideYoutube',
     },
   ];
 

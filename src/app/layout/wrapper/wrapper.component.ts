@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-wrapper',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './wrapper.component.html',
   styleUrl: './wrapper.component.css',
 })
-export class WrapperComponent {}
+export class WrapperComponent {
+  @Input() isScreenSize = false;
+}

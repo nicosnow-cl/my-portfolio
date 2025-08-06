@@ -1,7 +1,9 @@
-<app-wrapper>
-  <section class="min-h-[100dvh] p-2 md:p-8">
+<app-wrapper [isScreenSize]="true">
+  <section class="h-full p-2 md:p-8">
     <div class="h-full grid grid-cols-6 gap-8">
-      <div class="flex flex-col gap-y-8 col-span-6 md:col-span-2">
+      <div
+        class="flex flex-col gap-y-8 col-span-6 md:col-span-2 overflow-hidden"
+      >
         <h2 class="text-4xl font-medium">Sobre mi</h2>
         <p class="text-pretty">
           Soy un <b>Ingeniero de Software</b> con experiencia comprobada en el
@@ -23,14 +25,14 @@
               ¿Quién soy?
               <ng-icon name="lucideChevronDown" hlm hlmAccIcon />
             </button>
-            <hlm-accordion-content ngSkipHydration
-              ><app-acsii-portrait
-            /></hlm-accordion-content>
+            <hlm-accordion-content ngSkipHydration>
+              <app-acsii-portrait />
+            </hlm-accordion-content>
           </div>
         </div>
       </div>
 
-      <div class="col-span-6 md:col-span-4 h-fit" hlmCard>
+      <div class="col-span-6 md:col-span-4" hlmCard>
         <div
           class="flex flex-row justify-between gap-8 flex-wrap md:flex-nowrap"
           hlmCardHeader
