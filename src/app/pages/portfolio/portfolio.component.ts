@@ -2,7 +2,11 @@ import { Component } from '@angular/core';
 import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
 import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import { HlmIconDirective } from '@spartan-ng/helm/icon';
-import { lucideArrowRight, lucideArrowUpRight } from '@ng-icons/lucide';
+import {
+  lucideArrowRight,
+  lucideArrowUpRight,
+  lucideGithub,
+} from '@ng-icons/lucide';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import { WrapperComponent } from '../../layout/wrapper/wrapper.component';
@@ -12,14 +16,14 @@ const PROJECTS = [
   {
     title: 'AI Mentor Hub',
     description: 'Description of project one.',
-    imageUrl: `https://picsum.photos/seed/AI Mentor Hub/300/300`,
+    imageUrl: '/imgs/amh.png',
     linkTitle: 'amh.app',
     link: 'https://amh.app',
   },
   {
     title: 'Bit-land',
     description: 'Description of project two.',
-    imageUrl: `https://picsum.photos/seed/Bit-land/300/300`,
+    imageUrl: '/imgs/bit-land.png',
     linkTitle: 'bit-land.app',
     link: 'https://bit-land.app',
   },
@@ -41,7 +45,9 @@ const PROJECTS = [
     HlmBadgeDirective,
     WrapperComponent,
   ],
-  providers: [provideIcons({ lucideArrowUpRight, lucideArrowRight })],
+  providers: [
+    provideIcons({ lucideGithub, lucideArrowUpRight, lucideArrowRight }),
+  ],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.css',
 })
