@@ -30,7 +30,7 @@ const PROJECTS = [
   {
     title: 'BuscaRut',
     description: 'Description of project three.',
-    imageUrl: `https://picsum.photos/seed/BuscaRut/300/300`,
+    imageUrl: '/imgs/buscarut.png',
     linkTitle: 'buscarut.cl',
     link: 'https://buscarut.cl',
   },
