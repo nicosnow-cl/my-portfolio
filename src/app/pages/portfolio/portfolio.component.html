@@ -8,17 +8,19 @@
         >
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-4 flex-1 place-items-center overflow-auto"
+      >
         @for (item of gridItems; track item ) {
         <div
-          class="bg-foreground aspect-square relative shadow-md text-white group {{
+          class="bg-foreground aspect-square size-full relative shadow-md text-white group {{
             !item.imageUrl && 'hidden md:block'
           }}"
         >
           @if (item.imageUrl) {
           <img
             src="{{ item.imageUrl }}"
-            class="absolute h-full object-cover grayscale group-hover:grayscale-0 group-hover:brightness-110 transition-all duration-1000"
+            class="absolute size-full object-cover grayscale group-hover:grayscale-0 group-hover:brightness-110 transition-all duration-1000"
           />
 
           <div

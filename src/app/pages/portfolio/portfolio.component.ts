@@ -18,21 +18,30 @@ const PROJECTS = [
     description: 'Description of project one.',
     imageUrl: '/imgs/amh.png',
     linkTitle: 'amh.app',
-    link: 'https://amh.app',
+    links: {
+      github: 'https://github.com/nicosnow-cl/ai-mentor-hub-front',
+      live: 'https://ai-mentor-hub-front.vercel.app',
+    },
   },
   {
     title: 'Bit-land',
     description: 'Description of project two.',
     imageUrl: '/imgs/bit-land.png',
     linkTitle: 'bit-land.app',
-    link: 'https://bit-land.app',
+    links: {
+      github: 'https://github.com/nicosnow-cl/bit-land-front',
+      live: 'https://bit-land.app',
+    },
   },
   {
     title: 'BuscaRut',
     description: 'Description of project three.',
     imageUrl: '/imgs/buscarut.png',
     linkTitle: 'buscarut.cl',
-    link: 'https://buscarut.cl',
+    links: {
+      github: 'https://github.com/nicosnow-cl/buscarut-front-dev',
+      live: 'https://buscarut-front-dev.vercel.app',
+    },
   },
 ];
 
@@ -72,7 +81,7 @@ export class PortfolioComponent {
       description: project.description,
       imageUrl: project.imageUrl,
       linkTitle: project.linkTitle,
-      link: project.link,
+      links: project.links,
     };
   });
 }
