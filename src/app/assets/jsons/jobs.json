@@ -1,0 +1,135 @@
+[
+  {
+    "startDate": "2022-08-01",
+    "endDate": "2025-12-01",
+    "companyName": "Cencosud S.A.",
+    "companyLogo": "",
+    "companyURL": "https://www.cencosud.com/",
+    "country": "Chile",
+    "location": "Santiago",
+    "position": "Senior Software Engineer",
+    "description": "Ingeniero de Software enfocado en el desarrollo de soluciones escalables y eficientes. Ha integrado tecnologías innovadoras e IA generativa para potenciar funcionalidades internas. Desde 2025, forma parte del Centro de Excelencia (CoE) en IA de Cencosud.",
+    "achievements": [
+      "<b>GenAI Leadership:</b> Spearheaded frontend engineering for Plai, a GenAI platform built with Next.js, enabling AI-powered workflows for 5+ enterprise teams.",
+      "<b>Backend Architecture:</b> Designed NestJS/FastAPI microservices and RESTful APIs for multiple internal platforms.",
+      "<b>UI Systems:</b> Engineered reusable UI systems with React and Material UI, significantly increasing internal adoption and cross-departmental usability.",
+      "<b>AI Excellence:</b> Championed Generative AI standards as a core member of the Center of Excellence (CoE), driving enterprise-wide AI adoption and best practices."
+    ],
+    "stack": [
+      "Angular",
+      "React",
+      "Next.JS",
+      "NestJS",
+      "Python",
+      "FastAPI",
+      "GCloud",
+      "Azure",
+      "MongoDB",
+      "AWS",
+      "GenAI",
+      "LLMs",
+      "Git"
+    ]
+  },
+  {
+    "startDate": "2022-03-01",
+    "endDate": "2022-08-01",
+    "companyName": "LicitaLAB SpA",
+    "companyLogo": "",
+    "companyURL": "https://www.licitalab.com/",
+    "country": "Chile",
+    "location": "Santiago",
+    "position": "Full Stack Developer",
+    "description": "Desarrollador Full Stack enfocado en optimizar el rendimiento web y crear APIs eficientes para soluciones de scraping. Implementó interfaces responsivas y contribuyó a la expansión del SaaS a clientes en Perú.",
+    "achievements": [
+      "<b>Performance Optimization:</b> Reduced page load times by ~20% by optimizing frontend bundles and API response times.",
+      "<b>Data Pipelines:</b> Built high-volume data extraction pipelines using Node.js, ensuring platform scalability for enterprise clients.",
+      "<b>Market Expansion:</b> Delivered critical features that enabled international scaling and successful onboarding of clients in Peru."
+    ],
+    "stack": [
+      "TypeScript",
+      "React",
+      "Node.JS",
+      "MongoDB",
+      "PostgreSQL",
+      "AWS",
+      "Git"
+    ]
+  },
+  {
+    "startDate": "2020-03-01",
+    "endDate": "2021-08-01",
+    "companyName": "AgiBiz",
+    "companyLogo": "",
+    "companyURL": "https://www.agibiz.com/",
+    "country": "Chile",
+    "location": "Santiago",
+    "position": "Software Engineer",
+    "description": "Analista de Software encargado de la gestión de proyectos, documentación y cumplimiento de plazos. Actuó como enlace con stakeholders y brindó mentoría técnica a desarrolladores junior.",
+    "achievements": [
+      "<b>Enterprise Backend:</b> Developed business-critical services using Node.js and C# (.NET), ensuring high-quality delivery for complex projects.",
+      "<b>Mentorship:</b> Led code reviews and mentored junior developers, improving overall engineering standards and team velocity.",
+      "<b>Stakeholder Coordination:</b> Coordinated technical execution with stakeholders to ensure on-time delivery of business-critical features and alignment with roadmap goals."
+    ],
+    "stack": [
+      "TypeScript",
+      "Angular",
+      "Node.JS",
+      "MongoDB",
+      "PostgreSQL",
+      "Docker",
+      "Azure",
+      ".NET",
+      "Git"
+    ]
+  },
+  {
+    "startDate": "2021-03-01",
+    "endDate": "2021-08-01",
+    "companyName": "Penta Vida S.A.",
+    "companyLogo": "",
+    "companyURL": "https://www.pentavida.com/",
+    "country": "Chile",
+    "location": "Santiago",
+    "position": "Junior Software Developer",
+    "description": "Desarrollador Junior enfocado en la implementación de funcionalidades a medida y soporte técnico oportuno. Mejoró la mantenibilidad del código mediante buenas prácticas y documentación clara.",
+    "achievements": [
+      "<b>System Stability:</b> Delivered production support and issue resolution, improving stability and user satisfaction.",
+      "<b>Efficiency Gains:</b> Built custom C# (.NET Framework) features that enhanced operational efficiency for legacy systems.",
+      "<b>Incident Reduction:</b> Cut resolution time by implementing clean code and better maintainability standards."
+    ],
+    "stack": [
+      "Javascript",
+      "JQuery",
+      "Angular",
+      "C#",
+      ".NET",
+      "SQL Server",
+      "Jenkins",
+      "SVN"
+    ]
+  },
+  {
+    "startDate": "2020-03-01",
+    "endDate": "2020-12-01",
+    "companyName": "Universidad de Playa Ancha",
+    "companyLogo": "",
+    "companyURL": "https://www.upla.cl/",
+    "country": "Chile",
+    "location": "Valparaíso",
+    "position": "Research Engineer",
+    "description": "Desarrollador Junior enfocado en la implementación de funcionalidades a medida y soporte técnico oportuno. Mejoró la mantenibilidad del código mediante buenas prácticas y documentación clara.",
+    "achievements": [
+      "<b>Algorithm Design:</b> Implemented an Ant Colony Optimization (ACO) algorithm in Python to solve complex routing problems (EMVRP).",
+      "<b>Data Modeling:</b> Leveraged NumPy and Pandas to optimize large-scale scenarios, resulting in a co-authored IEEE peer-reviewed paper."
+    ],
+    "stack": [
+      "Python",
+      "NumPy",
+      "Pandas",
+      "Matplotlib",
+      "Jupyter Notebooks",
+      "Git"
+    ]
+  }
+]

@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div class="col-span-6 md:col-span-4" hlmCard>
+      <div class="h-full col-span-6 md:col-span-4" hlmCard>
         <div
           class="flex flex-row justify-between gap-8 flex-wrap md:flex-nowrap"
           hlmCardHeader
@@ -41,7 +41,7 @@
             <span class="font-medium">&#x2022; <i>Experiencia</i></span>
 
             <h3 class="text-4xl text-balance min-w-80 md:min-w-96" hlmCardTitle>
-              Explora mi trayectoria profesional
+              Conoce mi trayectoria profesional
             </h3>
           </div>
 
@@ -64,41 +64,71 @@
           </div>
         </div>
 
-        <div class="mt-4 grid gap-4" hlmCardContent>
-          <div class="flex flex-col">
-            @for (job of jobs; track job) {
-            <div
-              class="grid grid-cols-1 md:grid-cols-8 py-4 gap-y-6 gap-x-4 {{
-                $last ? 'border-none' : 'border-b'
-              }}"
-            >
-              <div class="flex flex-col items-start col-span-2">
-                <span class="text-xl font-medium"
-                  >{{ job.companyName }}, {{ job.location }}</span
-                >
-                <span class="text-muted-foreground"
-                  >&#x2022; {{ job.date }}</span
-                >
-              </div>
+        <hr hlmCardSeparator />
 
-              <div class="col-span-4">
-                <span class="text-xl font-medium">{{ job.position }}</span>
+        <div
+          class="flex-1 flex items-center justify-center py-6 px-10"
+          hlmCardContent
+        >
+          <hlm-carousel class="size-full mx-10">
+            <hlm-carousel-content class="cursor-grab">
+              @for (job of jobs; track job) {
+                <hlm-carousel-item class="flex flex-col gap-y-6">
+                  <div class="w-full flex justify-between">
+                    <div class="flex flex-col items-start">
+                      <span class="text-xl font-bold">{{ job.position }}</span>
+                      <span class="text-muted-foreground"
+                        >{{ job.startDate | date: "MMM yyyy" }} -
+                        {{
+                          job.endDate
+                            ? (job.endDate | date: "MMM yyyy")
+                            : "Presente"
+                        }}</span
+                      >
+                    </div>
 
-                <p class="text-muted-foreground">{{ job.description }}</p>
-              </div>
+                    <div class="flex flex-col items-end">
+                      <span class="text-xl font-medium">{{
+                        job.companyName
+                      }}</span>
 
-              <div
-                class="flex gap-2 items-center md:justify-end col-span-2 flex-wrap"
-              >
-                @for (item of job.stack; track item) {
-                <div class="cursor-default rounded-none" hlmBadge>
-                  {{ item }}
-                </div>
-                }
-              </div>
-            </div>
-            }
-          </div>
+                      <span class="text-muted-foreground"
+                        >{{ job.location }}, {{ job.country }}</span
+                      >
+                    </div>
+                  </div>
+
+                  <p class="text-muted-foreground relative">
+                    {{ job.description }}
+                  </p>
+
+                  <ul class="list-disc list-inside flex flex-col text-sm">
+                    @for (achievement of job.achievements; track achievement) {
+                      <li
+                        class="text-muted-foreground"
+                        [innerHTML]="achievement"
+                      ></li>
+                    }
+                  </ul>
+
+                  <div
+                    class="flex gap-2 items-center md:justify-end col-span-2 flex-wrap"
+                  >
+                    @for (item of job.stack; track item) {
+                      <div class="cursor-default rounded-none" hlmBadge>
+                        {{ item }}
+                      </div>
+                    }
+                  </div>
+                </hlm-carousel-item>
+              }
+            </hlm-carousel-content>
+
+            <button hlm-carousel-previous></button>
+            <button hlm-carousel-next></button>
+
+            <hlm-carousel-slide-display class="mt-1 flex justify-end" />
+          </hlm-carousel>
         </div>
       </div>
     </div>
