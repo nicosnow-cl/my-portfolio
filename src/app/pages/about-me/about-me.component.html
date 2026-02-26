@@ -67,10 +67,10 @@
         <hr hlmCardSeparator />
 
         <div
-          class="flex-1 flex items-center justify-center py-6 px-10"
+          class="max-w-full flex items-center justify-center py-6"
           hlmCardContent
         >
-          <hlm-carousel class="size-full mx-10">
+          <hlm-carousel class="max-w-5/6">
             <hlm-carousel-content class="cursor-grab">
               @for (job of jobs; track job) {
                 <hlm-carousel-item class="flex flex-col gap-y-6">
@@ -111,12 +111,21 @@
                     }
                   </ul>
 
-                  <div
-                    class="flex gap-2 items-center md:justify-end col-span-2 flex-wrap"
-                  >
+                  <div class="flex gap-2 flex-wrap">
                     @for (item of job.stack; track item) {
-                      <div class="cursor-default rounded-none" hlmBadge>
-                        {{ item }}
+                      <div
+                        class="rounded-xl h-full text-center"
+                        size="lg"
+                        hlmBadge
+                      >
+                        @if (getIcon(item)) {
+                          <ng-icon
+                            class="text-lg"
+                            [name]="getIcon(item)"
+                          ></ng-icon>
+                        } @else {
+                          {{ item }}
+                        }
                       </div>
                     }
                   </div>

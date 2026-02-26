@@ -23,6 +23,7 @@ import { DatePipe } from '@angular/common';
 import { AcsiiPortraitComponent } from '@app/common/acsii-portrait/acsii-portrait.component';
 import { WrapperComponent } from '@app/layout/wrapper/wrapper.component';
 import jobsJSON from '@app/assets/jsons/jobs.json';
+import { TECH_ICON_MAP, TECH_ICONS } from '@app/misc/icons';
 
 @Component({
   selector: 'app-about-me',
@@ -45,11 +46,20 @@ import jobsJSON from '@app/assets/jsons/jobs.json';
     NgIcon,
     HlmCarouselImports,
   ],
-  providers: [provideIcons({ lucideChevronDown, lucideLinkedin })],
+  providers: [
+    provideIcons({ lucideChevronDown, lucideLinkedin, ...TECH_ICONS }),
+  ],
   templateUrl: './about-me.component.html',
   styleUrl: './about-me.component.css',
 })
 export class AboutMeComponent {
   jobs: any = jobsJSON;
   linkedinURL = 'https://www.linkedin.com/in/nicofrias-snow/';
+  iconsMap = TECH_ICON_MAP;
+
+  getIcon(iconName: string) {
+    const key = iconName.toLowerCase() as keyof typeof this.iconsMap;
+
+    return this.iconsMap[key];
+  }
 }
