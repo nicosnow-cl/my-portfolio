@@ -8,30 +8,30 @@
 :root {
   --font-sans: "nunito", sans-serif;
   --font-karla: "karla", serif;
-  --main-color: 215 85% 10%;
+  --main-color: oklch(20.14% 0.0559 256.21);
 }
 
 :root {
-  --background: 0 0% 95%;
+  --background: oklch(96.12% 0 0);
   --foreground: var(--main-color);
 
-  --card: 0 0% 98%;
+  --card: oklch(98.51% 0 0);
   --card-foreground: var(--main-color);
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(14.08% 0.0044 285.82);
   --primary: var(--main-color);
-  --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 48%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 0 0% 93%;
-  --accent-foreground: 240 5.9% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
+  --primary-foreground: oklch(98.51% 0 0);
+  --secondary: oklch(57.95% 0 0);
+  --secondary-foreground: oklch(100% 0 0);
+  --muted: oklch(96.74% 0.0013 286.37);
+  --muted-foreground: oklch(55.17% 0.0138 285.94);
+  --accent: oklch(94.61% 0 0);
+  --accent-foreground: oklch(21.03% 0.0059 285.89);
+  --destructive: oklch(63.68% 0.2078 25.33);
+  --destructive-foreground: oklch(98.51% 0 0);
+  --border: oklch(91.97% 0.004 286.32);
+  --input: oklch(91.97% 0.004 286.32);
+  --ring: oklch(21.03% 0.0059 285.89);
   --radius: 0rem;
   color-scheme: light;
 }
@@ -101,7 +101,9 @@
   mask-composite: intersect;
 
   /* Fondo visible solo en el área revelada */
-  transition: mask-image 0.1s, -webkit-mask-image 0.1s;
+  transition:
+    mask-image 0.1s,
+    -webkit-mask-image 0.1s;
 }
 
 .mosaic-grid {
@@ -113,7 +115,9 @@
 .mosaic-elem {
   position: relative;
   aspect-ratio: 1 / 1;
-  transition: filter 0.2s ease, transform 0.2s ease;
+  transition:
+    filter 0.2s ease,
+    transform 0.2s ease;
   will-change: transform, filter;
 }
 

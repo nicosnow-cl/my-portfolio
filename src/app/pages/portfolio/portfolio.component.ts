@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
-import { HlmButtonDirective } from '@spartan-ng/helm/button';
-import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import {
   lucideArrowRight,
   lucideArrowUpRight,
@@ -48,10 +48,10 @@ const PROJECTS = [
 @Component({
   selector: 'portfolio',
   imports: [
-    HlmButtonDirective,
-    HlmIconDirective,
+    HlmButton,
+    HlmIcon,
     NgIcon,
-    HlmBadgeDirective,
+    HlmBadge,
     WrapperComponent,
   ],
   providers: [

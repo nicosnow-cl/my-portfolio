@@ -1,21 +1,16 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
-import { HlmButtonDirective } from '@spartan-ng/helm/button';
-import { HlmMenuComponent, HlmMenuItemDirective } from '@spartan-ng/helm/menu';
+
+import { HlmButton } from '@spartan-ng/helm/button';
+
 import { lucideGithub, lucideLinkedin, lucideYoutube } from '@ng-icons/lucide';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import { RouteTransitionService } from '@app/services/route-transition.service';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
   selector: 'app-navbar',
-  imports: [
-    BrnMenuTriggerDirective,
-    HlmButtonDirective,
-    HlmMenuComponent,
-    HlmMenuItemDirective,
-    NgIcon,
-  ],
+  imports: [HlmButton, HlmDropdownMenuImports, NgIcon],
   providers: [provideIcons({ lucideGithub, lucideLinkedin, lucideYoutube })],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
@@ -74,12 +69,12 @@ export class NavbarComponent implements AfterViewInit {
         if (window.scrollY > 0) {
           this.navbarElement.nativeElement.classList.add(
             'bg-foreground/15',
-            'glass'
+            'glass',
           );
         } else {
           this.navbarElement.nativeElement.classList.remove(
             'bg-foreground/15',
-            'glass'
+            'glass',
           );
         }
       });

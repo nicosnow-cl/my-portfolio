@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { lucideArrowDown } from '@ng-icons/lucide';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
@@ -11,7 +11,7 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 @Component({
   selector: 'app-hero',
   imports: [
-    HlmButtonDirective,
+    HlmButton,
     WrapperComponent,
     // MaskedContainerComponent,
     // MosaicComponent,

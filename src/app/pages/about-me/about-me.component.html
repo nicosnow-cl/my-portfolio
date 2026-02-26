@@ -21,10 +21,13 @@
 
         <div hlmAccordion>
           <div hlmAccordionItem>
-            <button hlmAccordionTrigger>
-              ¿Quién soy?
-              <ng-icon name="lucideChevronDown" hlm hlmAccIcon />
-            </button>
+            <h3 class="contents">
+              <button hlmAccordionTrigger>
+                ¿Quién soy?
+                <ng-icon name="lucideChevronDown" hlm hlmAccIcon />
+              </button>
+            </h3>
+
             <hlm-accordion-content ngSkipHydration>
               <app-acsii-portrait />
             </hlm-accordion-content>
@@ -116,13 +119,11 @@
                       <div
                         class="rounded-xl h-full text-center"
                         size="lg"
+                        hlmTooltip="{{ item }}"
                         hlmBadge
                       >
                         @if (getIcon(item)) {
-                          <ng-icon
-                            class="text-lg"
-                            [name]="getIcon(item)"
-                          ></ng-icon>
+                          <ng-icon class="text-lg" [name]="getIcon(item)" />
                         } @else {
                           {{ item }}
                         }

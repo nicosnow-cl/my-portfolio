@@ -24,7 +24,7 @@
     <button
       class="ml-auto underline decoration-dotted"
       variant="link"
-      [brnMenuTriggerFor]="menu"
+      [hlmDropdownMenuTrigger]="menu"
       hlmBtn
     >
       Redes sociales
@@ -33,17 +33,17 @@
 </div>
 
 <ng-template #menu>
-  <hlm-menu>
+  <hlm-dropdown-menu>
     @for (item of socialMediaItems; track item) {
     <a
       [href]="item.link"
       target="_blank"
       class="flex gap-x-2 items-center cursor-pointer"
-      hlmMenuItem
+      hlmDropdownMenuItem
     >
       <ng-icon name="{{ item.icon }}" hlm />
       {{ item.name }}
     </a>
     }
-  </hlm-menu>
+  </hlm-dropdown-menu>
 </ng-template>
