@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmCarouselImports } from '@spartan-ng/helm/carousel';
 import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { HlmTooltip } from '@libs/ui/tooltip/src';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { lucideChevronDown, lucideLinkedin } from '@ng-icons/lucide';
@@ -22,15 +22,15 @@ import jobsJSON from '@app/assets/jsons/jobs.json';
     AcsiiPortraitComponent,
     DatePipe,
     HlmAccordionImports,
-    HlmBadgeImports,
     HlmButtonImports,
     HlmCardImports,
     HlmCarouselImports,
-    HlmTooltipImports,
     HlmIcon,
+    HlmSeparatorImports,
+    HlmTooltip,
+    HlmTooltipImports,
     NgIcon,
     WrapperComponent,
-    HlmTooltip,
   ],
   providers: [
     provideIcons({ lucideChevronDown, lucideLinkedin, ...TECH_ICONS }),
@@ -40,7 +40,6 @@ import jobsJSON from '@app/assets/jsons/jobs.json';
 })
 export class AboutMeComponent {
   jobs: any = jobsJSON;
-  linkedinURL = 'https://www.linkedin.com/in/nicofrias-snow/';
   iconsMap = TECH_ICON_MAP;
 
   getIcon(iconName: string) {

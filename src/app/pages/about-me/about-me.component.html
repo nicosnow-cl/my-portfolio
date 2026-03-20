@@ -40,39 +40,19 @@
           class="flex flex-row justify-between gap-8 flex-wrap md:flex-nowrap"
           hlmCardHeader
         >
-          <div class="flex flex-col gap-y-2">
-            <span class="font-medium">&#x2022; <i>Experiencia</i></span>
+          <h3 class="text-4xl text-balance min-w-80 md:min-w-96" hlmCardTitle>
+            Conoce mi trayectoria profesional
+          </h3>
 
-            <h3 class="text-4xl text-balance min-w-80 md:min-w-96" hlmCardTitle>
-              Conoce mi trayectoria profesional
-            </h3>
-          </div>
-
-          <div class="flex flex-col items-start gap-y-2">
-            <p hlmCardDescription>
-              Mi enfoque se centra en la calidad del código, la colaboración
-              efectiva y la entrega de soluciones que superen las expectativas.
-            </p>
-
-            <a
-              [href]="linkedinURL"
-              target="_blank"
-              class="mt-auto px-0 underline decoration-dotted flex gap-x-2"
-              variant="link"
-              hlmBtn
-            >
-              <ng-icon name="lucideLinkedin" hlm />
-              Visita mi LinkedIn
-            </a>
-          </div>
+          <p hlmCardDescription>
+            Mi enfoque se centra en la calidad del código, la colaboración
+            efectiva y la entrega de soluciones que superen las expectativas.
+          </p>
         </div>
 
-        <hr hlmCardSeparator />
+        <hlm-separator />
 
-        <div
-          class="max-w-full flex items-center justify-center py-6"
-          hlmCardContent
-        >
+        <div class="max-w-full flex items-center justify-center" hlmCardContent>
           <hlm-carousel class="max-w-5/6">
             <hlm-carousel-content class="cursor-grab">
               @for (job of jobs; track job) {
@@ -88,17 +68,33 @@
                             : "Presente"
                         }}</span
                       >
-                    </div>
-
-                    <div class="flex flex-col items-end">
-                      <span class="text-xl font-medium">{{
-                        job.companyName
-                      }}</span>
-
                       <span class="text-muted-foreground"
                         >{{ job.location }}, {{ job.country }}</span
                       >
                     </div>
+
+                    @if (job.companyLogo) {
+                      <div class="relative w-1/2 overflow-hidden">
+                        <a
+                          href="{{ job.companyURL }}"
+                          target="_blank"
+                          class="group"
+                        >
+                          <img
+                            [src]="job.companyLogo"
+                            alt="{{ job.companyName }} logo"
+                            class="absolute object-contain object-center inset-0 m-auto opacity-80 group-hover:opacity-100 transition-opacity"
+                            width="200"
+                            height="40"
+                        /></a>
+                      </div>
+                    } @else {
+                      <span
+                        class="text-xl font-medium flex items-center gap-x-2"
+                      >
+                        {{ job.companyName }}</span
+                      >
+                    }
                   </div>
 
                   <p class="text-muted-foreground relative">
@@ -114,13 +110,11 @@
                     }
                   </ul>
 
-                  <div class="flex gap-2 flex-wrap">
+                  <div class="flex gap-2 flex-wrap mt-auto">
                     @for (item of job.stack; track item) {
                       <div
-                        class="rounded-xl h-full text-center"
-                        size="lg"
+                        class="text-md font-medium px-2"
                         hlmTooltip="{{ item }}"
-                        hlmBadge
                       >
                         @if (getIcon(item)) {
                           <ng-icon class="text-lg" [name]="getIcon(item)" />
@@ -134,8 +128,8 @@
               }
             </hlm-carousel-content>
 
-            <button hlm-carousel-previous></button>
-            <button hlm-carousel-next></button>
+            <button class="cursor-pointer" hlm-carousel-previous></button>
+            <button class="cursor-pointer" hlm-carousel-next></button>
 
             <hlm-carousel-slide-display class="mt-1 flex justify-end" />
           </hlm-carousel>

@@ -20,10 +20,12 @@ export class NavbarComponent implements AfterViewInit {
     {
       name: 'Sobre mi',
       link: '/about-me',
+      disabled: false,
     },
     {
       name: 'Portafolio',
       link: '/portfolio',
+      disabled: false,
     },
     {
       name: 'Blog',
