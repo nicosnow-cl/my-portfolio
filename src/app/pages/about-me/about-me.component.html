@@ -1,8 +1,8 @@
 <app-wrapper [isScreenSize]="true">
   <section class="h-full p-2 md:p-8">
-    <div class="h-full grid grid-cols-6 gap-8">
+    <div class="h-full grid grid-rows-1 grid-cols-6 gap-8">
       <div
-        class="flex flex-col gap-y-8 col-span-6 md:col-span-2 overflow-hidden"
+        class="flex flex-col gap-y-4 col-span-6 md:col-span-2 overflow-hidden"
       >
         <h2 class="text-4xl font-medium">Sobre mi</h2>
         <p class="text-pretty">
@@ -13,13 +13,7 @@
           operaciones del negocio.
         </p>
 
-        <p class="text-pretty">
-          Dale un vistazo a mi trayectoria profesional y descubre cómo he
-          contribuido a proyectos innovadores y desafiantes. Estoy siempre
-          abierto a nuevas oportunidades y colaboraciones.
-        </p>
-
-        <div hlmAccordion>
+        <!-- <div hlmAccordion>
           <div hlmAccordionItem>
             <h3 class="contents">
               <button hlmAccordionTrigger>
@@ -29,110 +23,128 @@
             </h3>
 
             <hlm-accordion-content ngSkipHydration>
+              <p class="text-pretty">
+          Dale un vistazo a mi trayectoria profesional y descubre cómo he
+          contribuido a proyectos innovadores y desafiantes. Estoy siempre
+          abierto a nuevas oportunidades y colaboraciones.
+        </p>
+        
               <app-acsii-portrait />
             </hlm-accordion-content>
           </div>
-        </div>
+        </div> -->
       </div>
 
-      <div class="h-full col-span-6 md:col-span-4" hlmCard>
-        <div
-          class="flex flex-row justify-between gap-8 flex-wrap md:flex-nowrap"
-          hlmCardHeader
-        >
-          <h3 class="text-4xl text-balance min-w-80 md:min-w-96" hlmCardTitle>
-            Conoce mi trayectoria profesional
-          </h3>
+      <div class="relative col-span-6 md:col-span-4">
+        <div class="h-full" hlmCard>
+          <div class="gap-y-4" hlmCardHeader>
+            <h3 class="text-4xl text-balance" hlmCardTitle>
+              Conoce mi trayectoria profesional
+            </h3>
 
-          <p hlmCardDescription>
-            Mi enfoque se centra en la calidad del código, la colaboración
-            efectiva y la entrega de soluciones que superen las expectativas.
-          </p>
-        </div>
+            <p hlmCardDescription>
+              Mi enfoque se centra en la calidad del código, la colaboración
+              efectiva y la entrega de soluciones que superen las expectativas.
+            </p>
+          </div>
 
-        <hlm-separator />
+          <hlm-separator />
 
-        <div class="max-w-full flex items-center justify-center" hlmCardContent>
-          <hlm-carousel class="max-w-5/6">
-            <hlm-carousel-content class="cursor-grab">
-              @for (job of jobs; track job) {
-                <hlm-carousel-item class="flex flex-col gap-y-6">
-                  <div class="w-full flex justify-between">
-                    <div class="flex flex-col items-start">
-                      <span class="text-xl font-bold">{{ job.position }}</span>
-                      <span class="text-muted-foreground"
-                        >{{ job.startDate | date: "MMM yyyy" }} -
-                        {{
-                          job.endDate
-                            ? (job.endDate | date: "MMM yyyy")
-                            : "Presente"
-                        }}</span
-                      >
-                      <span class="text-muted-foreground"
-                        >{{ job.location }}, {{ job.country }}</span
-                      >
-                    </div>
+          <div class="overflow-y-auto" style="scrollbar-gutter: stable">
+            <div class="flex items-center justify-center" hlmCardContent>
+              <hlm-carousel class="static size-full">
+                <button
+                  class="cursor-pointer -left-4 top-1/2 -translate-y-1/2 z-10"
+                  hlm-carousel-previous
+                ></button>
+                <button
+                  class="cursor-pointer -right-4 top-1/2 -translate-y-1/2 z-10"
+                  hlm-carousel-next
+                ></button>
 
-                    @if (job.companyLogo) {
-                      <div class="relative w-1/2 overflow-hidden">
-                        <a
-                          href="{{ job.companyURL }}"
-                          target="_blank"
-                          class="group"
-                        >
-                          <img
-                            [src]="job.companyLogo"
-                            alt="{{ job.companyName }} logo"
-                            class="absolute object-contain object-center inset-0 m-auto opacity-80 group-hover:opacity-100 transition-opacity"
-                            width="200"
-                            height="40"
-                        /></a>
-                      </div>
-                    } @else {
-                      <span
-                        class="text-xl font-medium flex items-center gap-x-2"
-                      >
-                        {{ job.companyName }}</span
-                      >
-                    }
-                  </div>
+                <hlm-carousel-content class="cursor-grab">
+                  @for (job of jobs; track job) {
+                    <hlm-carousel-item class="flex flex-col gap-y-6">
+                      <div class="flex justify-between">
+                        <div class="flex flex-col items-start">
+                          <span class="text-xl font-bold">{{
+                            job.position
+                          }}</span>
+                          <span class="text-muted-foreground"
+                            >{{ job.startDate | date: "MMM yyyy" }} -
+                            {{
+                              job.endDate
+                                ? (job.endDate | date: "MMM yyyy")
+                                : "Presente"
+                            }}</span
+                          >
+                          <span class="text-muted-foreground"
+                            >{{ job.location }}, {{ job.country }}</span
+                          >
+                        </div>
 
-                  <p class="text-muted-foreground relative">
-                    {{ job.description }}
-                  </p>
-
-                  <ul class="list-disc list-inside flex flex-col text-sm">
-                    @for (achievement of job.achievements; track achievement) {
-                      <li
-                        class="text-muted-foreground"
-                        [innerHTML]="achievement"
-                      ></li>
-                    }
-                  </ul>
-
-                  <div class="flex gap-2 flex-wrap mt-auto">
-                    @for (item of job.stack; track item) {
-                      <div
-                        class="text-md font-medium px-2"
-                        hlmTooltip="{{ item }}"
-                      >
-                        @if (getIcon(item)) {
-                          <ng-icon class="text-lg" [name]="getIcon(item)" />
+                        @if (job.companyLogo) {
+                          <div class="relative w-1/2 overflow-hidden">
+                            <a
+                              href="{{ job.companyURL }}"
+                              target="_blank"
+                              class="group"
+                            >
+                              <img
+                                [src]="job.companyLogo"
+                                alt="{{ job.companyName }} logo"
+                                class="absolute object-contain object-center inset-0 m-auto opacity-80 group-hover:opacity-100 transition-opacity"
+                                width="200"
+                                height="40"
+                            /></a>
+                          </div>
                         } @else {
-                          {{ item }}
+                          <span
+                            class="text-xl font-medium flex items-center gap-x-2"
+                          >
+                            {{ job.companyName }}</span
+                          >
                         }
                       </div>
-                    }
-                  </div>
-                </hlm-carousel-item>
-              }
-            </hlm-carousel-content>
 
-            <button class="cursor-pointer" hlm-carousel-previous></button>
-            <button class="cursor-pointer" hlm-carousel-next></button>
+                      <p class="text-muted-foreground relative">
+                        {{ job.description }}
+                      </p>
 
-            <hlm-carousel-slide-display class="mt-1 flex justify-end" />
-          </hlm-carousel>
+                      <ul class="list-disc list-inside flex flex-col text-sm">
+                        @for (
+                          achievement of job.achievements;
+                          track achievement
+                        ) {
+                          <li
+                            class="text-muted-foreground"
+                            [innerHTML]="achievement"
+                          ></li>
+                        }
+                      </ul>
+
+                      <div class="flex gap-2 flex-wrap mt-auto">
+                        @for (item of job.stack; track item) {
+                          <div
+                            class="text-md font-medium px-2"
+                            hlmTooltip="{{ item }}"
+                          >
+                            @if (getIcon(item)) {
+                              <ng-icon class="text-lg" [name]="getIcon(item)" />
+                            } @else {
+                              {{ item }}
+                            }
+                          </div>
+                        }
+                      </div>
+                    </hlm-carousel-item>
+                  }
+                </hlm-carousel-content>
+
+                <hlm-carousel-slide-display class="mt-1 flex justify-end" />
+              </hlm-carousel>
+            </div>
+          </div>
         </div>
       </div>
     </div>

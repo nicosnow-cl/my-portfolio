@@ -1,12 +1,11 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-
 import { HlmButton } from '@spartan-ng/helm/button';
-
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { lucideGithub, lucideLinkedin, lucideYoutube } from '@ng-icons/lucide';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-
 import { RouteTransitionService } from '@app/services/route-transition.service';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+
+import { scrollDown } from '@libs/utils';
 
 @Component({
   selector: 'app-navbar',
@@ -57,7 +56,11 @@ export class NavbarComponent implements AfterViewInit {
   constructor(private transitionService: RouteTransitionService) {}
 
   goTo(path: string) {
-    this.transitionService.navigate(path);
+    this.transitionService.navigate(path).finally(() => {
+      setTimeout(() => {
+        this.handleScrollDown();
+      }, 500);
+    });
   }
 
   ngAfterViewInit(): void {
@@ -81,5 +84,11 @@ export class NavbarComponent implements AfterViewInit {
         }
       });
     }
+  }
+
+  handleScrollDown(): void {
+    const routerOutler = document.getElementById('app-main-content');
+
+    scrollDown(routerOutler, -72);
   }
 }
